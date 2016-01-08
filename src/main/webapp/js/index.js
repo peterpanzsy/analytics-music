@@ -1,3 +1,4 @@
+
 $(function () {
 	  // 路径配置
     require.config({
@@ -238,6 +239,5 @@ $(function () {
     }
 );
     
-
 
 });
