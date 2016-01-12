@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <!-- 命名空间 -->
     <typeAliases>
          <typeAlias alias="User" type="com.keystone.analytics.music.model.User"/>
+         <typeAlias alias="HotRank" type="com.keystone.analytics.music.model.HotRank"/>
+         <typeAlias alias="RelatedSongs" type="com.keystone.analytics.music.model.RelatedSongs"/>  
+         <typeAlias alias="HotSinger" type="com.keystone.analytics.music.model.HotSinger"/> 
+         <typeAlias alias="ReviewLocationCount" type="com.keystone.analytics.music.model.ReviewLocationCount"/> 
     </typeAliases>
  
     <!-- 映射map -->

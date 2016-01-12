@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.keystone.analytics.music.dao.MusicStatisDAO">
+            
+         <select id="getHotRank" resultType="HotRank">
+			SELECT t1.id, t2.sname name, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
+and t1.id=t2.id order by t1.listentimes desc
+         </select>
+         <select id="getHotSingers" resultType="HotSinger">
+         	SELECT t1.id, t2.singer, t2.sname song, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
+and t1.id=t2.id order by t1.listentimes desc;
+         </select> 
+         <select id="getRelatedSongs" resultType="RelatedSongs">			
+				select t.id, t.sname name, t.rsname rsongs from relatedsong t;
+         </select> 
+         
+          <select id="getProvinces" resultType="String">			
+				select t.S_PROVNAME from dict_province t where t.S_PROVNAME!='国外'; 
+         </select> 
+         <select id="getReviewCitys" resultType="ReviewLocationCount">			
+				select t.location, t.count from reviewcity t;
+         </select> 
+</mapper>

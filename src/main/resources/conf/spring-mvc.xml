@@ -14,15 +14,31 @@
      
     <!-- 扫描controller（controller层注入） -->
    <context:component-scan base-package="com.keystone.analytics.music.controller"/>
-    
-   <!-- 避免IE在ajax请求时，返回json出现下载 -->
+   
+   <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">   
+        <property name="cacheSeconds" value="0" />   
+        <property name="messageConverters">   
+            <list>   
+            <!-- 加入Jackson json库 --> 
+                <bean class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"> 
+                    <property name="supportedMediaTypes"> 
+                        <list> 
+                            <value>application/json;charset=UTF-8</value> <!-- 定义json返回时的MIME格式 -->
+                        </list> 
+                    </property> 
+                </bean>   
+            </list>   
+        </property> 
+    </bean> 
+<!-- 避免IE在ajax请求时，返回json出现下载 -->    
+<!--    
    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">    
         <property name="supportedMediaTypes">
             <list>
                 <value>text/html;charset=UTF-8</value>
             </list>
         </property>
-    </bean>
+    </bean> -->
 <!-- 对模型视图添加前后缀 -->
      <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
       p:prefix="/jsp/" p:suffix=".jsp"/> 

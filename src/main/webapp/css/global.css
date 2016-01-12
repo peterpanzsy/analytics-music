@@ -1,7 +1,17 @@
 /*
  * Globals
  */
-
+.list-title{
+	margin-bottom:10px;
+}
+.contain-border{
+	border:solid 1px #C2BEBE;
+	padding:0px;
+}
+.span-border{
+	border:solid 1px #C2BEBE;
+	padding:10px;
+}
 body {
   font-family: Georgia, "微软雅黑", Times, serif;
   color: #555;
@@ -19,15 +29,16 @@ h6, .h6 {
   color: #333;
 }
 strong{
-	color:#357ECB
+	color:#357ECB;
+	font-size:20px;
 }
 { 
 background-color:yellow;
 }
 
 #map-container {
-    height: 800px; 
-    min-width: 70%; 
+    height: 361px; 
+    min-width: 100%; 
     max-width: 100%; 
     margin: 0 auto; 
 }
