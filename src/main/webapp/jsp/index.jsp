@@ -33,7 +33,7 @@
 					<div class="list-title">
 						<strong>音乐排行榜</strong>
 					</div>
-					<div class="row-fluid">
+					<div id="song-rank" class="row-fluid">
 						<div class="span6">
 							<ul id="hotRank1" class="unstyled">		
 							</ul>
@@ -48,7 +48,7 @@
 					<div class="list-title">
 						<strong>热门音乐推荐</strong>
 					</div>
-					<div class="row-fluid">
+					<div id="rec-song" class="row-fluid">
 						<div class="span6">
 							<ul id="recTimes1" class="unstyled">		
 							</ul>
@@ -61,14 +61,14 @@
 				</div>
 			</div>
 			<div class="row-fluid" style="margin-top:5px;">
-				<div class="span6 span-border" style="margin-left:0px;width:35%">
+				<div class="span6 span-border" style="margin-left:0px;width:35%;height:400px">
 					<div class="list-title">
 						<strong>实时热门歌手</strong>(每周五更新)
 					</div>
 					<ul id="hotSinger" class="unstyled">		
 					</ul><a href="/analytics-music/category.action#panel-3" style="float:right;color:#0088CC">更多</a>
 				</div>
-				<div class="span6 span-border" style="width:65%;margin-left:-1.7px;">
+				<div class="span6 span-border" style="width:65%;margin-left:-1.7px;height:400px">
 					<div id="map-container"></div>
 				</div>
 			</div>
@@ -81,9 +81,9 @@
 	<script src="jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script> 
 
- 	<script src="echarts/dist/echarts.min.js"></script>echart3
-	<script src="echarts/map/js/china.js"></script>echart3
-	<script src="echarts/theme/dark.js"></script>echart3	
+ 	<script src="echarts/dist/echarts.min.js"></script><!-- echart3 -->
+	<script src="echarts/map/js/china.js"></script>
+	<script src="echarts/theme/dark.js"></script>	
 	<script src="echarts/theme/vintage.js"></script>
 
     <script type="text/javascript" src="js/index.js"></script>

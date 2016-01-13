@@ -16,13 +16,13 @@ $(function () {
               $.each(data.hotRankList, function(index, song){
             	  index+=1;   
             	  if(index<=10){
-                    html1 += '<li>'+ index +"&nbsp&nbsp" + song['name']
-                              + '&nbsp&nbsp' + song['hot']
-                              + '</li>';
+                    html1 += '<li><div class="song-info"><span class="index">'+ index +'</span>&nbsp&nbsp<span class="song">' + song['name']
+                              + '</span><span class="listen-times">' + song['hot']
+                              + '</span></div></li>';
             	  }else if(index>10&&index<=20){
-                    	 html2 += '<li>' + index +"&nbsp&nbsp" + song['name']
-                         + '&nbsp&nbsp' + song['hot']
-                         + '</li>';             
+                    	 html2 += '<li><div class="song-info"><span class="index">' + index +'</span>&nbsp&nbsp<span class="song">' + song['name']
+                         + '</span><span class="listen-times">' + song['hot']
+                         + '</span></div></li>';             
 	               }else{
 	                	return false;//跳出循环
 	               }
@@ -53,13 +53,13 @@ $(function () {
                $.each(data.songs, function(index, song){
              	  index+=1;   
              	  if(index<=10){
-                     html1 += '<li>'+ index +"&nbsp&nbsp" + song['name']
-                               + '&nbsp&nbsp' + song['reTimes']
-                               + '</li>';
+                     html1 += '<li><div class="song-info"><span class="index">'+ index +'</span>&nbsp&nbsp;<span class="song">' + song['name']
+                               + '</span><span class="rec-times">' + song['reTimes']
+                               + '</span></div></li>';
              	  }else if(index>10&&index<=20){
-                     	 html2 += '<li>' + index +"&nbsp&nbsp" + song['name']
-                          + '&nbsp&nbsp' + song['reTimes']
-                          + '</li>';             
+                     	 html2 += '<li><div class="song-info"><span class="index">' + index +'</span>&nbsp&nbsp;<span class="song">' + song['name']
+                          + '</span><span class="rec-times">' + song['reTimes']
+                          + '</span></div></li>';             
  	               }else{
  	                	return false;//跳出循环
  	               }
@@ -82,9 +82,9 @@ $(function () {
                 $.each(data.singers, function(index, singer){
               	  index+=1;   
               	  if(index<=15){
-                      html1 += '<li>'+ index +"&nbsp&nbsp" + singer['singer']
-                                + '&nbsp&nbsp&nbsp&nbsp' + singer['song']
-                      			+ '&nbsp&nbsp&nbsp&nbsp' + singer['hot']+ '</li>';
+                      html1 += '<li><div class="singer-info"><span class="index">'+ index +"</span>&nbsp&nbsp" + singer['singer']
+                                + '<span class="song">' + singer['song']
+                      			+ '</span><span class="hot">' + singer['hot']+ '</span></div></li>';
               	  }else{
   	                	return false;//跳出循环
   	               }

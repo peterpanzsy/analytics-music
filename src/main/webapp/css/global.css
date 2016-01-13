@@ -1,4 +1,56 @@
 /*
+*index.jsp
+*/
+/*音乐排行榜*/
+#song-rank .index{
+	color:#FF6D01;
+	font-size:16px;
+}
+#song-rank li .song-info{
+	width:100%;position:relative;
+}
+#song-rank li .song{
+	width:150px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;
+}
+#song-rank li .listen-times{
+	width:100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;left:170px;
+}
+/*热门音乐推荐*/
+#rec-song .index{
+	color:#FF6D01;
+	font-size:16px;
+}
+#rec-song li .song-info{
+	width:100%;position:relative;
+}
+#rec-song li .song{
+	width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;
+}
+#rec-song li .rec-times{
+	width:100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;left:220px;
+}
+/*实时热门歌手*/
+#hotSinger .index{
+	color:#FF6D01;
+	font-size:16px;
+}
+#hotSinger li .singer-info{
+	width:100%;position:relative;
+}
+#hotSinger li .song{
+	width:120px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;left:120px;
+}
+#hotSinger li .hot{
+	position:absolute;left:260px;
+}
+/*听众分布地图*/
+#map-container {
+    height: 380px; 
+    min-width: 100%; 
+    max-width: 100%; 
+    margin: 0 auto; 
+}
+/*
  * Globals
  */
 .list-title{
@@ -15,6 +67,7 @@
 body {
   font-family: Georgia, "微软雅黑", Times, serif;
   color: #555;
+  font-size:15px;
 }
 
 h1, .h1,
@@ -35,13 +88,6 @@ strong{
 { 
 background-color:yellow;
 }
-
-#map-container {
-    height: 361px; 
-    min-width: 100%; 
-    max-width: 100%; 
-    margin: 0 auto; 
-}
 .loading {
     margin-top: 10em;
     text-align: center;
@@ -50,8 +96,14 @@ background-color:yellow;
 /*
 *覆盖bootstrap
 */
+input[type="radio"], input[type="checkbox"]{
+	margin:0px 3px;
+}
+
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
 	font-weight:bold;
+	color:rgb(89, 154, 224);
+	font-size:18px;/*body是14px*/
 } 
 a{
 	color:#444F55;

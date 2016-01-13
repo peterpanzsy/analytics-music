@@ -11,21 +11,15 @@
     <!-- Bootstrap -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap-combined.min.css" rel="stylesheet">
-	 <link href="css/global.css" rel="stylesheet">
-	 
-	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+ 	<link href="DataTables/media/css/jquery.dataTables.css">
+	<link href="css/global.css" rel="stylesheet">
+	<link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
+	
 	<script src="jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="bootstrap/js/bootstrap.min.js"></script> 
-    <script src="highcharts/js/highcharts.js"></script> 
- <!--    <script src="highcharts/js/modules/exporting.js" type="text/javascript"></script>  
-     -->
-<!--     <script src="https://code.highcharts.com/maps/highmaps.js"></script> -->
-    <script src="//code.highcharts.com/maps/modules/map.js"></script>
-	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
-	<script src="https://code.highcharts.com/mapdata/countries/cn/cn-all.js"></script>
-
-    <script type="text/javascript" src="js/index.js"></script>
+    <script src="DataTables/media/js/jquery.dataTables.js"></script> 
+   	<script type="text/javascript" src="js/category.js"></script> 
+  
   </head>
   <body>
   
@@ -59,9 +53,7 @@
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="panel-1">
-							<p>
-								第一部分内容.
-							</p>
+							<%@ include file="category/rank.jsp" %>
 						</div>
 						<div class="tab-pane" id="panel-2">
 							<p>
