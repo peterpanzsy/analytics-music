@@ -11,15 +11,20 @@
     <!-- Bootstrap -->
 	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="bootstrap/css/bootstrap-combined.min.css" rel="stylesheet">
- 	<link href="DataTables/media/css/jquery.dataTables.css">
-	<link href="css/global.css" rel="stylesheet">
-	<link href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css">
-	
-	<script src="jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
+ 	<link href="DataTables/media/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="css/global.css" rel="stylesheet" rel="stylesheet">
+	    	
+    <script src="jquery/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script> 
-    <script src="DataTables/media/js/jquery.dataTables.js"></script> 
-   	<script type="text/javascript" src="js/category.js"></script> 
-  
+    <script src="DataTables/media/js/jquery.dataTables.min.js" type="text/javascript"></script> 
+    
+ 	<script src="echarts/dist/echarts.min.js"></script><!-- echart3 -->
+	<script src="echarts/map/js/china.js"></script>
+	<script src="echarts/theme/dark.js"></script>	
+	<script src="echarts/theme/vintage.js"></script>
+	<script src="echarts/dist/extension/dataTool.js"></script>
+    
+
   </head>
   <body>
   
@@ -32,19 +37,19 @@
 						<li class="active">
 							<a data-toggle="tab" href="#panel-1">► My音乐排行榜</a>
 						</li>
-						<li>
+						<li onclick="drawHotLineChart();">
 							<a data-toggle="tab" href="#panel-2">► My音乐热度24h</a>
 						</li>
-						<li>
+						<li onclick="drawListenerDistribution();">
 							<a data-toggle="tab" href="#panel-3">► My音乐听众属性</a>
 						</li>
-						<li>
+						<li onclick="showCorrelation();">
 							<a data-toggle="tab" href="#panel-4">► My音乐关联分析</a>
 						</li>
 						<li>
 							<a data-toggle="tab" href="#panel-5">► 听众评论分析</a>
 						</li>
-						<li>
+						<li onclick="drawTendLineChart();">
 							<a data-toggle="tab" href="#panel-6">► My音乐热度趋势分析</a>
 						</li>
 						<li>
@@ -56,47 +61,34 @@
 							<%@ include file="category/rank.jsp" %>
 						</div>
 						<div class="tab-pane" id="panel-2">
-							<p>
-								第二部分内容.
-							</p>
+							<%@ include file="category/hot.jsp" %>
 						</div>
-							<div class="tab-pane" id="panel-3">
-							<p>
-								第一部分内容.
-							</p>
+						<div class="tab-pane" id="panel-3">
+							<%@ include file="category/listener.jsp" %>
 						</div>
 						<div class="tab-pane" id="panel-4">
-							<p>
-								第二部分内容.
-							</p>
+							<%@ include file="category/correlation.jsp" %>
 						</div>
-							<div class="tab-pane" id="panel-5">
-							<p>
-								第一部分内容.
-							</p>
+						<div class="tab-pane" id="panel-5">
+							<%@ include file="category/review.jsp" %>
 						</div>
 						<div class="tab-pane" id="panel-6">
-							<p>
-								第二部分内容.
-							</p>
+							<%@ include file="category/tend.jsp" %>
 						</div>
-							<div class="tab-pane" id="panel-7">
-							<p>
-								第一部分内容.
-							</p>
+						<div class="tab-pane" id="panel-7">
+							<%@ include file="category/predict.jsp" %>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-     
-
-
-	<%@ include file="common/foot.jsp" %>
 	
+	<%@ include file="common/foot.jsp" %>
 
-
+	<script src="js/label-cloud.js"></script>
+   	<script type="text/javascript" src="js/category.js"></script> 
+  
+	
   </body>
 </html>

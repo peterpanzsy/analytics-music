@@ -1,4 +1,54 @@
 /*
+*category.jsp
+*/
+.search-option{
+	border:solid 1px rgb(212, 195, 195);
+	padding:10px;
+	line-height:30px;
+	margin-bottom:5px;
+}
+.search-option select{
+	width:100px;
+}
+/*音乐排行榜*/
+.table-div-border{
+	border:solid 1px rgb(212, 195, 195);
+	padding:10px;
+}
+/*听众属性*/
+.listener-chart-border{
+	border:solid 1px rgb(212, 195, 195);
+	padding:10px;
+	height:800px;
+}
+.line{
+	 height:1px;
+	 width:100%;
+	 background:#B4C3D1;
+	 overflow:hidden;
+	 margin:10px 0px 10px 0px;
+}
+/*关联分析*/
+.graph-border{
+	border:solid 1px rgb(212, 195, 195);
+	width:100%;
+	height:600px;
+}
+/*听众评论分析*/
+.label-border{
+	border:1px solid rgb(212, 195, 195);
+	background: rgba(207, 218, 222, 0.34) no-repeat center 230px;	
+}
+#label-div {position:relative; width:450px; height:350px; margin: 0px auto 0; }
+#label-div a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#000; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+#label-div a:hover {border: 1px solid ;}
+#label-div .blue {color:blue;}
+#label-div .red {color:red;}
+#label-div .yellow {color:yellow;}
+.table-div-border select{
+	width:100px;
+}
+/*
 *index.jsp
 */
 /*音乐排行榜*/
@@ -12,8 +62,18 @@
 #song-rank li .song{
 	width:150px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;
 }
+#song-rank li .song:hover
+{
+text-overflow:inherit;
+overflow:visible;
+}
 #song-rank li .listen-times{
 	width:100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;left:170px;
+}
+#song-rank li .listen-times:hover
+{
+text-overflow:inherit;
+overflow:visible;
 }
 /*热门音乐推荐*/
 #rec-song .index{
@@ -26,8 +86,18 @@
 #rec-song li .song{
 	width:180px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;
 }
+#rec-song li .song:hover
+{
+text-overflow:inherit;
+overflow:visible;
+}
 #rec-song li .rec-times{
 	width:100px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;left:220px;
+}
+#rec-song li .rec-times:hover
+{
+text-overflow:inherit;
+overflow:visible;
 }
 /*实时热门歌手*/
 #hotSinger .index{
@@ -39,6 +109,11 @@
 }
 #hotSinger li .song{
 	width:120px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;position:absolute;left:120px;
+}
+#hotSinger li .song:hover
+{
+text-overflow:inherit;
+overflow:visible;
 }
 #hotSinger li .hot{
 	position:absolute;left:260px;
