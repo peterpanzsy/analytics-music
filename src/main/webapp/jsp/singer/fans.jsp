@@ -1,8 +1,15 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<div class="label-border">
+	<h3 class="title">粉丝整体形象标签</h3>
+	<div id="label-div" class="label-div">
+	</div>
+</div>
+
 <div class="search-option-border">
-歌曲选择:
+<h3>歌手粉丝详细分析</h3>
+歌手选择:
 <select>
-  <option value="volvo" selected="selected">所在地</option>
+  <option value="volvo" selected="selected">歌手所在地</option>
   <option value="saab">Saab</option>
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
@@ -37,21 +44,30 @@
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
 </select>
-<br>不同平台:
-<input type="checkbox" value="" />虾米音乐热度排行 
-<input type="checkbox" value="" />QQ音乐热度排行
-<input type="checkbox" value="" />Keystone音乐热度排行
-<br>不同日期:
-<input type="checkbox" value="" />最近一天
-<input type="checkbox" value="" />最近一周
-<input type="checkbox" value="" />最近一月
-<input type="checkbox" value="" />最近三个月
-<input type="checkbox" value="" />历史热度
-<br>歌曲搜索:
+<br>粉丝特征:
+<input type="checkbox" value="" />地域特征
+<input type="checkbox" value="" />性别比例
+<input type="checkbox" value="" />年龄分布
+<input type="checkbox" value="" />认证用户比例
+<input type="checkbox" value="" />活跃粉丝统计
+<input type="checkbox" value="" />粉丝喜好特征
+<br>歌手搜索:
 <input style="margin-top:5px;" type="text" value="" />
 </div>
-<div class="row-fluid">
- 	<div class="contain-border" id="line-container" style="min-width: 310px; height: 400px; margin-top:0px;margin-bottom:5px;"></div>
+
+<div class="fans-chart-border">
+	 <div style="margin-bottom:51px;height:400px;">
+	 	<div id="map-container" style="float:left;width:60%;height:400px;"></div>
+	 	<div id="sex-pie" style="float:left;width:40%;height:400px;"></div>
+	 </div>
+	 <div class="line"> </div>
+	 <div style="margin-bottom:51px;height:400px;">
+	 	<div id="age-bar" style="float:left;width:60%;height:400px;"></div>
+	 	<div id="vip-pie" style="float:left;width:40%;height:400px;"></div>
+	 </div>
+	 <div class="line"> </div>
+	 <div class="label-border">
+		 <div id="label-div-fan" class="label-div">
+		 </div>	
+	 </div>
 </div>
-    
- 

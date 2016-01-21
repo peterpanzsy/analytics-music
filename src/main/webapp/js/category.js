@@ -5,6 +5,19 @@ $(document).ready(function() {
 	$('#rankSong').DataTable({
 		//"paging":   false,
 	    //"ordering": false,
+		"ajax":{
+			"url":"getRankDetail.action",
+			"type":"POST"
+				},
+		"columns": [
+		            { "data": "rownum" },
+		            { "data": "name" },
+		            { "data": "singer" },
+		            { "data": "language" },
+		            { "data": "album" },
+		            { "data": "hot" },
+		            { "data": "type" }
+		        ],
 	    "info":     false,
 		"language": {
 			"url":"DataTables/Chinese.json"
@@ -22,11 +35,51 @@ $(document).ready(function() {
 		}
 	});
 	/**
+	 * 听众标签
+	 */
+	$.ajax({
+		 type: "POST",
+         url: "getReviewerLabel.action",
+         dataType: "json",
+         async:false,
+         success: function(data){
+	        	  $('#label-div').empty();   //清空resText里面的所有内容
+	              var html = ''; 
+	              $.each(data.labels, function(index, label){  
+	            	 var color = "default";
+	            	 if(index%5==1){
+	            		 color = "red";	            		 
+	            	 }else if(index%5==2){
+	            		 color="blue";
+	            	 }else if(index%5==3){
+	            		 color="yellow";
+	            	 }else if(index%5==4){
+	            		 color="green";
+	            	 }  
+	            	 html+="<a href='#' class='"+color+"'>"+label.label+"</a>";
+	              });
+	              $('#label-div').html(html);
+              }
+	});
+	drawLabelCloud('label-div');
+	/**
 	 * 评论列表
 	 */
 	$('#reviewTable').DataTable({
 		//"paging":   false,
 	    //"ordering": false,
+		"ajax":{
+			"url":"getReviewDetail.action",
+			"type":"POST"
+				},
+		"columns": [
+		            { "data": "song" },
+		            { "data": "singer" },
+		            { "data": "reviewer" },
+		            { "data": "location" },
+		            { "data": "content" },
+		            { "data": "date" }
+		        ],
 	    "info":     false,
 		"language": {
 			"url":"DataTables/Chinese.json"
@@ -38,6 +91,18 @@ $(document).ready(function() {
 	$('#tendTable').DataTable({
 		//"paging":   false,
 	    //"ordering": false,
+		"ajax":{
+			"url":"getRankDetail.action",
+			"type":"POST"
+				},
+		"columns": [
+		            { "data": "rownum" },
+		            { "data": "name" },
+		            { "data": "singer" },
+		            { "data": "language" },
+		            { "data": "album" },
+		            { "data": "hot" }
+		        ],
 	    "info":     false,
 		"language": {
 			"url":"DataTables/Chinese.json"
@@ -49,6 +114,16 @@ $(document).ready(function() {
 	$('#predictTable').DataTable({
 		//"paging":   false,
 	    //"ordering": false,
+		"ajax":{
+			"url":"songsRecommend.action",
+			"type":"POST"
+				},
+	    "sAjaxDataProp":"songs",
+		"columns": [
+		            { "data": "id"},
+		            { "data": "name" },
+		            { "data": "reTimes" }
+		        ],
 	    "info":     false,
 		"language": {
 			"url":"DataTables/Chinese.json"
@@ -336,12 +411,12 @@ $(document).ready(function() {
 		    myChart.hideLoading();
 
 		    var graph = echarts.dataTool.gexf.parse(xml);
-		    var categories = [];
-		    for (var i = 0; i < 9; i++) {
+		    var categories = [{name: '情歌'},{name: '摇滚'},{name: '爵士'},{name: '流行'},{name: '民谣'},{name: '电子'},{name: '嘻哈'},{name: '古典'},{name: '乡村'}];
+		/*    for (var i = 0; i < 9; i++) {
 		        categories[i] = {
 		            name: '类目' + i
 		        };
-		    }
+		    }*/
 		    graph.nodes.forEach(function (node) {
 		        node.itemStyle = null;
 		        node.symbolSize = 10;
@@ -353,8 +428,8 @@ $(document).ready(function() {
 		    });
 		    option = {
 		        title: {
-		            text: 'Les Miserables',
-		            subtext: 'Default layout',
+		            text: '音乐风格关联图谱',
+		            //subtext: 'Default layout',
 		            top: 'bottom',
 		            left: 'right'
 		        },

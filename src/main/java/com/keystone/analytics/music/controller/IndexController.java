@@ -15,4 +15,14 @@ public class IndexController {
     public String category(){
     	return "category";
     }
+    
+    @RequestMapping("search")
+    public String search(){
+    	return "search";
+    }
+    
+    @RequestMapping("singer")
+    public String singer(){
+    	return "singer";
+    }
 }

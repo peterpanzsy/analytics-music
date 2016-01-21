@@ -10,8 +10,8 @@ String spath = request.getServletPath();
     <nav class="blog-nav">
      <a class="<%if (spath.equals("/jsp/index.jsp")){%>active<%}%> blog-nav-item" href="index.action">首页</a>
      <a class="<%if (spath.equals("/jsp/category.jsp")){%>active<%}%> blog-nav-item" href="category.action">音乐分类信息</a>
-     <a class="blog-nav-item" href="#">高级搜索</a>
-     <a class="blog-nav-item" href="#">歌手分类信息</a>
+     <a class="<%if (spath.equals("/jsp/search.jsp")){%>active<%}%> blog-nav-item" href="search.action">高级搜索</a>
+     <a class="<%if (spath.equals("/jsp/singer.jsp")){%>active<%}%> blog-nav-item" href="singer.action">歌手分类信息</a>
      <a class="blog-nav-item" href="#">报告生成</a>
      <a class="blog-nav-item" href="#">用户数据源配置</a>
      <a class="blog-nav-item" href="#">联系keydata</a>

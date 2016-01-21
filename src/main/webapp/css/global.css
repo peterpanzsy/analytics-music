@@ -1,23 +1,80 @@
 /*
-*category.jsp
+*singer.action
 */
-.search-option{
-	border:solid 1px rgb(212, 195, 195);
+.fans-chart-border{
+	border:solid 1px #ddd;
+	padding:10px;
+	height:1300px;
+}
+.singerinfo{
+
+	padding-right:100px;
+	font-size:20px;
+}
+.singerinfo li{
+	line-height:30px;	
+}
+.singerinfo span{
+	margin-left:20px;
+}
+/*歌手推荐*/
+.rec-singer-border{
+	border:solid 1px #ddd;
+	padding:10px;
+	height:800px;
+}
+
+/*标签云*/
+.label-div {position:relative; width:450px; height:350px; margin: 0px auto 0; }
+.label-div a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#000; font-weight:bold; text-decoration:none; padding: 3px 6px; }
+.label-div a:hover {border: 1px solid ;}
+.label-div .default {color:#173F7D;}
+.label-div .blue {color:#00ABFF;}
+.label-div .red {color:#94043F;}
+.label-div .green{color:#76B573;}
+.label-div .yellow {color:rgb(218, 137, 77);}
+/*
+*search.action
+*/
+.search-div-border{
+	border:solid 1px #ddd;
+	padding:10px;
+}
+.search-div-border button{
+	height:30px;
+	font-family:"微软雅黑";
+	font-size:18px;
+}
+.songinfo{
+	padding-left:100px;
+	padding-right:100px;
+	font-size:20px;
+}
+.songinfo li{
+	line-height:30px;	
+}
+.songinfo span{
+	margin-left:20px;
+}
+/*
+*category.action
+*/
+.search-option-border{
+	border:solid 1px #ddd;
 	padding:10px;
 	line-height:30px;
-	margin-bottom:5px;
 }
-.search-option select{
+.search-option-border select{
 	width:100px;
 }
 /*音乐排行榜*/
 .table-div-border{
-	border:solid 1px rgb(212, 195, 195);
+	border:solid 1px #ddd;
 	padding:10px;
 }
 /*听众属性*/
 .listener-chart-border{
-	border:solid 1px rgb(212, 195, 195);
+	border:solid 1px #ddd;
 	padding:10px;
 	height:800px;
 }
@@ -30,21 +87,24 @@
 }
 /*关联分析*/
 .graph-border{
-	border:solid 1px rgb(212, 195, 195);
+	border:solid 1px #ddd;
 	width:100%;
 	height:600px;
 }
 /*听众评论分析*/
 .label-border{
-	border:1px solid rgb(212, 195, 195);
+	border:1px solid #ddd;
 	background: rgba(207, 218, 222, 0.34) no-repeat center 230px;	
 }
+/*标签云css*/
 #label-div {position:relative; width:450px; height:350px; margin: 0px auto 0; }
 #label-div a {position:absolute; top:0px; left:0px; font-family: Microsoft YaHei; color:#000; font-weight:bold; text-decoration:none; padding: 3px 6px; }
 #label-div a:hover {border: 1px solid ;}
-#label-div .blue {color:blue;}
-#label-div .red {color:red;}
-#label-div .yellow {color:yellow;}
+#label-div .default {color:#173F7D;}
+#label-div .blue {color:#00ABFF;}
+#label-div .red {color:#94043F;}
+#label-div .green{color:#76B573;}
+#label-div .yellow {color:rgb(218, 137, 77);}
 .table-div-border select{
 	width:100px;
 }
@@ -119,7 +179,7 @@ overflow:visible;
 	position:absolute;left:260px;
 }
 /*听众分布地图*/
-#map-container {
+.map-container {
     height: 380px; 
     min-width: 100%; 
     max-width: 100%; 
@@ -128,15 +188,22 @@ overflow:visible;
 /*
  * Globals
  */
+.title{
+	font-size:18px;
+	font-family:"微软雅黑";
+	color:#333;
+	margin-top:5px;
+	margin-left:5px;
+ }
 .list-title{
 	margin-bottom:10px;
 }
 .contain-border{
-	border:solid 1px #C2BEBE;
+	border:solid 1px #ddd;
 	padding:0px;
 }
 .span-border{
-	border:solid 1px #C2BEBE;
+	border:solid 1px #ddd;
 	padding:10px;
 }
 body {
@@ -152,7 +219,7 @@ h4, .h4,
 h5, .h5,
 h6, .h6 {
   margin-top: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family:"微软雅黑"; //"Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   color: #333;
 }

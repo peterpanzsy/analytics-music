@@ -1,22 +1,39 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
 <div class="label-border">
+	<h3 class="title">听众标签</h3>
 	<div id="label-div">
-		<a href="#">JS课程</a>
-		<a href="#" class="red">教程</a>
-		<a href="#">回头一眸</a>
-		<a href="#">精品</a>
-		<a href="#" class="blue">源码下载</a>
-		<a href="#">SEO</a>
-		<a href="#" class="red">特效</a>
-		<a href="#">继承</a>
-		<a href="#" class="red">源码爱好者</a>
-		<a href="#" class="blue">OOP</a>
-		<a href="#">XHTML</a>
-		<a href="#">W3C</a>
-		<a href="#">石川</a>
-		<a href="#" class="yellow">人生如歌</a>
-		<a href="#">blue</a>
+		<a href="#">音乐</a>
+		<a href="#" class="red">旅游</a>
+		<a href="#" class="blue">电影</a>
+		<a href="#" class="green">宅</a>
+		<a href="#" class="blue">游戏动漫</a>
+		<a href="#">90后</a>
+		<a href="#" class="green">自由</a>
+		<a href="#">娱乐</a>
+		<a href="#" class="green">美女</a>
+		<a href="#" class="blue">名人</a>
+		<a href="#">明星</a>
+		<a href="#" class="blue">腐女</a>
+		<a href="#" class="green">天蝎座</a>
+		<a href="#" class="yellow">文艺</a>
+		<a href="#" class="blue">睡觉</a>
+		
+		<a href="#">美容</a>
+		<a href="#" class="red">教育就业</a>
+		<a href="#" class="blue">IT数码</a>
+		<a href="#">码农</a>
+		<a href="#" class="blue">产品狗</a>
+		<a href="#">00后</a>
+		<a href="#" class="green">读书</a>
+		<a href="#">街舞</a>
+		<a href="#" class="green">星座控</a>
+		<a href="#" class="blue">萝莉控</a>
+		<a href="#">大叔</a>
+		<a href="#" class="blue">直男</a>
+		<a href="#">写作</a>
+		<a href="#" class="yellow">摄影</a>
+		<a href="#" class="blue">睡觉</a>
 	</div>
 </div>
 <div id="review-detail" class="table-div-border">
@@ -67,65 +84,25 @@
 	<table id="reviewTable" class="display dataTable" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th>排名</th>
-                <th>歌曲</th>
-                <th>歌手</th>
-                <th>语言</th>
-                <th>所属专辑</th>
-                <th>历史热度值</th>
+                <th width="10%">歌名</th>
+                <th width="10%">歌手</th>
+                <th width="10%">评论者</th>
+                <th width="10%">地区</th>
+                <th>内容</th>
+                <th width="20%">时间</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>排名</th>
-                <th>歌曲</th>
+                <th>歌名</th>
                 <th>歌手</th>
-                <th>语言</th>
-                <th>所属专辑</th>
-                <th>历史热度值</th>
+                <th>评论者</th>
+                <th>地区</th>
+                <th>内容</th>
+                <th>时间</th>
             </tr>
         </tfoot>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>幸福了，然后呢</td>
-                <td>A-Lin</td>
-                <td>中文</td>
-                <td>幸福了，然后呢</td>
-                <td>320,800</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>喜欢你</td>
-                <td>BEYOND</td>
-                <td>粤语 </td>
-                <td>秘密警察</td>
-                <td>170,750</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-                <td>2009/01/12</td>
-                <td>86,000</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-                <td>2012/03/29</td>
-                <td>433,060</td>
-            </tr>
-            <tr>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>33</td>
-                <td>2008/11/28</td>
-                <td>162,700</td>
-            </tr>
-            </tbody>
+        </tbody>
     </table>
 </div>

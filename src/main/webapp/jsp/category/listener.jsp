@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<div class="search-option">
+<div class="search-option-border">
 不同平台:
 <input type="checkbox" value="" />虾米音乐热度排行 
 <input type="checkbox" value="" />QQ音乐热度排行
@@ -25,7 +25,7 @@
 </div>
 <div class="listener-chart-border">
 	 <div>
-	 	<div id="map-container" ></div> 
+	 	<div class="map-container" id="map-container" ></div> 
 	 </div>
 	 <div class="line"> </div>
 	 <div >

@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<div class="contain-border" id="tend-line-container" style="min-width: 310px; height: 400px; margin-top:10px;margin-bottom:5px;"></div>
+<div class="contain-border" id="tend-line-container" style="min-width: 310px; height: 400px; margin-top:10px;margin-bottom:0px;"></div>
 <div class="table-div-border">
 	<table id="tendTable" class="display dataTable" cellspacing="0" width="100%">
         <thead>

@@ -16,8 +16,11 @@ import com.keystone.analytics.music.dao.MusicStatisDAO;
 import com.keystone.analytics.music.model.HotRank;
 import com.keystone.analytics.music.model.HotSinger;
 import com.keystone.analytics.music.model.ProvinceCount;
+import com.keystone.analytics.music.model.RankDetail;
 import com.keystone.analytics.music.model.RelatedSongs;
+import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewLocationCount;
+import com.keystone.analytics.music.model.ReviewerLabel;
 import com.keystone.analytics.music.model.SongRecommend;
 import com.keystone.analytics.music.service.MusicStatisService;
 
@@ -27,6 +30,9 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	@Autowired
 	private MusicStatisDAO musicStatisDAO;
 	
+	/**
+	 * 首页
+	 */
 	@Override
 	public List<ProvinceCount> getProvinceCou() {
 		List<String> provinces = musicStatisDAO.getProvinces();	
@@ -119,10 +125,31 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 		for(int k = 0; k <songTimesList.size(); k++){
 			Map.Entry<String, Integer> songTimes =  songTimesList.get(k);
 			SongRecommend songRecommend = new SongRecommend();
+			songRecommend.setId(k+1);
 			songRecommend.setName(songTimes.getKey());
 			songRecommend.setReTimes(songTimes.getValue().toString());
 			songRecommendList.add(songRecommend);
 		}
 		return songRecommendList;		
 	}
+	
+	@Override
+	public List<RankDetail> getRankDetail() {
+		// TODO Auto-generated method stub
+		
+		return musicStatisDAO.getRankDetail();
+	}
+
+	@Override
+	public List<ReviewDetail> getReviewDetail() {
+		// TODO Auto-generated method stub
+		return musicStatisDAO.getReviewDetail();
+	}
+	
+	@Override
+	public List<ReviewerLabel> getReviewerLabel() {
+		// TODO Auto-generated method stub
+		return musicStatisDAO.getReviewerLabel();
+	}
+	
 }

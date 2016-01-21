@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<div class="search-option">
+<div class="search-option-border">
 不同平台:
 <input type="checkbox" value="" />虾米音乐热度排行 
 <input type="checkbox" value="" />QQ音乐热度排行
@@ -33,6 +33,7 @@
                 <th>语言</th>
                 <th>所属专辑</th>
                 <th>历史热度值</th>
+                <th>歌曲类型</th>
             </tr>
         </thead>
         <tfoot>
@@ -43,6 +44,7 @@
                 <th>语言</th>
                 <th>所属专辑</th>
                 <th>历史热度值</th>
+                <th>歌曲类型</th>
             </tr>
         </tfoot>
         <tbody>

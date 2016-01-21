@@ -69,7 +69,7 @@
 					</ul><a href="/analytics-music/category.action#panel-3" style="float:right;color:#0088CC">更多</a>
 				</div>
 				<div class="span6 span-border" style="width:65%;margin-left:-1.7px;height:400px">
-					<div id="map-container"></div>
+					<div class="map-container" id="map-container"></div>
 				</div>
 			</div>
 		</div>
