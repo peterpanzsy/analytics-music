@@ -15,6 +15,8 @@ public interface MusicStatisDAO {
 	/**
 	 * 首页
 	 */
+	public List<Integer> getHotTend(int songid);//一天的试听次数走势
+	
     public List<HotRank> getHotRank( );
     
     public List<HotSinger> getHotSingers( );

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.keystone.analytics.music.model.EchartValue;
 import com.keystone.analytics.music.model.HotRank;
 import com.keystone.analytics.music.model.HotSinger;
 import com.keystone.analytics.music.model.ProvinceCount;
@@ -29,6 +30,15 @@ public class MusicStatisController {
 	/*
 	 * 首页的action
 	 */
+	@RequestMapping("hotTend")
+	@ResponseBody
+	public Map<String,Map<String, Object>> hotTend(){
+		Map<String, Object> hotTendMap = new HashMap<String, Object>();
+		hotTendMap = musicStatisService.getHotTend();
+		Map<String, Map<String, Object>> result = new HashMap<String, Map<String, Object>>();
+    	result.put("hotTendMap", hotTendMap);
+        return result;
+	}
     @RequestMapping("hotRank")
     @ResponseBody
     public Map<String,List<HotRank>> hotRank(){

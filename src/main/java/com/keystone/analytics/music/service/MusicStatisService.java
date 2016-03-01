@@ -1,6 +1,7 @@
 package com.keystone.analytics.music.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.keystone.analytics.music.model.HotRank;
 import com.keystone.analytics.music.model.HotSinger;
@@ -14,6 +15,8 @@ public interface MusicStatisService {
 	/**
 	 * 首页
 	 */
+	public  Map<String, Object> getHotTend();
+	
 	public List<HotRank> getHotRank();
 	
 	public List<HotSinger> getHotSingers();

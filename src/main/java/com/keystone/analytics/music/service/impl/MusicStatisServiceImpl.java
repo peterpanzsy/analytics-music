@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.keystone.analytics.music.dao.MusicStatisDAO;
+import com.keystone.analytics.music.model.EchartValue;
 import com.keystone.analytics.music.model.HotRank;
 import com.keystone.analytics.music.model.HotSinger;
 import com.keystone.analytics.music.model.ProvinceCount;
@@ -33,6 +34,30 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	/**
 	 * 首页
 	 */
+	@Override
+	public Map<String, Object> getHotTend() {
+		// TODO Auto-generated method stub
+		Map<String, Object> hotTendMap = new HashMap<String, Object>();
+		List<HotRank> hotRankList = musicStatisDAO.getHotRank();
+		List<Integer> firstHotTendList = musicStatisDAO.getHotTend(hotRankList.get(0).getId());
+		List<Integer> secondHotTendList = musicStatisDAO.getHotTend(hotRankList.get(1).getId());
+		List<Integer> thirdHotTendList = musicStatisDAO.getHotTend(hotRankList.get(2).getId());
+		hotTendMap.put("first", getHourPlayCou(firstHotTendList));
+		hotTendMap.put("second", getHourPlayCou(secondHotTendList));
+		hotTendMap.put("third", getHourPlayCou(thirdHotTendList));
+		hotTendMap.put("top1name",hotRankList.get(0).getName());
+		hotTendMap.put("top2name",hotRankList.get(1).getName());
+		hotTendMap.put("top3name",hotRankList.get(2).getName());
+		return hotTendMap;
+	}
+	private static List<Integer> getHourPlayCou(List<Integer> originlist){
+		List<Integer> resultlist = new ArrayList<Integer>();
+		for(int i=1; i < originlist.size(); i++){
+			resultlist.add(originlist.get(i)-originlist.get(i-1));
+		}
+		return resultlist;
+	}
+	
 	@Override
 	public List<ProvinceCount> getProvinceCou() {
 		List<String> provinces = musicStatisDAO.getProvinces();	
@@ -151,5 +176,7 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 		// TODO Auto-generated method stub
 		return musicStatisDAO.getReviewerLabel();
 	}
+
+
 	
 }

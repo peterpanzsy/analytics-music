@@ -4,6 +4,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keystone.analytics.music.dao.MusicStatisDAO">
          <!-- 首页    -->
+         <select id="getHotTend" resultType="Integer">
+         	SELECT t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-09 00:00:00' and '2014-12-10 00:00:00'>t1.time 
+and t1.id=t2.id and t1.id = #{songid,jdbcType=NUMERIC} ORDER BY t1.time
+         </select>
          <select id="getHotRank" resultType="HotRank">
 			SELECT t1.id, t2.sname name, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
 and t1.id=t2.id order by t1.listentimes desc
