@@ -23,17 +23,7 @@ $(document).ready(function() {
 			"url":"DataTables/Chinese.json"
 		}
 	});
-	/**
-	 * 音乐关联排名
-	 */
-	$('#correlationRank').DataTable({
-		//"paging":   false,
-	    //"ordering": false,
-	    "info":     false,
-		"language": {
-			"url":"DataTables/Chinese.json"
-		}
-	});
+	
 	/**
 	 * 听众标签
 	 */
@@ -68,6 +58,7 @@ $(document).ready(function() {
 	$('#reviewTable').DataTable({
 		//"paging":   false,
 	    //"ordering": false,
+		"serverSide": true,//这个打开会发送一个form，里面包含一些比如分页信息等默认参数
 		"ajax":{
 			"url":"getReviewDetail.action",
 			"type":"POST"
@@ -136,95 +127,100 @@ $(document).ready(function() {
 	function drawHotLineChart(){
 		$("#panel-2").addClass("active");
 		var hotLineChart = echarts.init(document.getElementById('line-container'),"macarons");
-
-		hotLineChart.setOption({
-				theme:'dark',
-			    title : {
-			        text: 'Top3歌曲热度趋势',
-			        subtext: '最近一周'
-			    },
-			    tooltip : {
-			        trigger: 'axis'
-			    },
-			    legend: {
-			        data:['Top1','Top2','Top3']
-			    },
-			    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {show: true, type: ['line', 'bar']},
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
-			    xAxis : [
-			        {
-			            type : 'category',
-			            boundaryGap : false,
-			            data : ['周一','周二','周三','周四','周五','周六','周日']
-			        }
-			    ],
-			    yAxis : [
-			        {
-			            type : 'value',
-			            axisLabel : {
-			                formatter: '{value}'
-			            }
-			        }
-			    ],
-			    series : [
-			        {
-			            name:'Top1',
-			            type:'line',
-			            data:[11, 11, 15, 13, 12, 13, 10],
-			            markPoint : {
-			                data : [
-			                    {type : 'max', name: '最大值'},
-			                    {type : 'min', name: '最小值'}
-			                ]
-			            },
-			            markLine : {
-			                data : [
-			                    {type : 'average', name: '平均值'}
-			                ]
-			            }
-			        },
-			        {
-			            name:'Top2',
-			            type:'line',
-			            data:[5, 5, 7, 6, 12, 8,7],
-			            markPoint : {
-			                data : [
-			                    {type : 'max', name: '最大值'},
-			                    {type : 'min', name: '最小值'}
-			                ]
-			            },
-			            markLine : {
-			                data : [
-			                    {type : 'average', name: '平均值'}
-			                ]
-			            }
-			        },
-			        {
-			            name:'Top3',
-			            type:'line',
-			            data:[1, -2, 2, 5, 3, 2, 0],
-			            markPoint : {
-			                data : [
-			                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-			                ]
-			            },
-			            markLine : {
-			                data : [
-			                    {type : 'average', name : '平均值'}
-			                ]
-			            }
-			        }
-			    ]
-			});
+	    hotLineChart.setOption({
+	  	  		theme:'dark',
+	  		    title : {
+	  		        text: 'Top3歌曲热度趋势',
+	  		        subtext: '最近24h'
+	  		    },
+	  		    tooltip : {
+	  		        trigger: 'axis'
+	  		    },
+	  		    toolbox: {
+	  		        show : true,
+	  		        feature : {
+	  		            mark : {show: true},
+	  		            dataView : {show: true, readOnly: false},
+	  		            magicType : {show: true, type: ['line', 'bar']},
+	  		            restore : {show: true},
+	  		            saveAsImage : {show: true}
+	  		        }
+	  		    },
+	  		    calculable : true,
+	  		    xAxis : [
+	  		        {
+	  		            type : 'category',
+	  		            boundaryGap : false,
+	  		            data : ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
+	  		                    '13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
+	  		        }
+	  		    ],
+	  		    yAxis : [
+	  		        {
+	  		            type : 'value',
+	  		            axisLabel : {
+	  		                formatter: '{value}'
+	  		            }
+	  		        }
+	  		    ]
+	  		});
+	    $.post('hotTend.action').done(function(data){
+	    	hotLineChart.setOption({
+			   legend: {
+	 		        data:[data.hotTendMap.top1name,data.hotTendMap.top2name,data.hotTendMap.top3name]
+	 		    },
+	    	    series : [
+	    	  		        {
+	    	  		            name:data.hotTendMap.top1name,
+	    	  		            type:'line',
+	    	  		            data:data.hotTendMap.first,
+	    	  		            markPoint : {
+	    	  		                data : [
+	    	  		                    {type : 'max', name: '最大值'},
+	    	  		                    {type : 'min', name: '最小值'}
+	    	  		                ]
+	    	  		            },
+	    	  		            markLine : {
+	    	  		                data : [
+	    	  		                    {type : 'average', name: '平均值'}
+	    	  		                ]
+	    	  		            }
+	    	  		        },
+	    	  		        {
+	    	  		            name:data.hotTendMap.top2name,
+	    	  		            type:'line',
+	    	  		            data:data.hotTendMap.second,
+	    	  		            markPoint : {
+	    	  		                data : [
+	    	  		                    {type : 'max', name: '最大值'},
+	    	  		                    {type : 'min', name: '最小值'}
+	    	  		                ]
+	    	  		            },
+	    	  		            markLine : {
+	    	  		                data : [
+	    	  		                    {type : 'average', name: '平均值'}
+	    	  		                ]
+	    	  		            }
+	    	  		        },
+	    	  		        {
+	    	  		            name:data.hotTendMap.top3name,
+	    	  		            type:'line',
+	    	  		            data:data.hotTendMap.third,
+		    	  		        markPoint : {
+		  	  		                data : [
+		  	  		                    {type : 'max', name: '最大值'},
+		  	  		                    {type : 'min', name: '最小值'}
+		  	  		                ]
+		  	  		            },
+	    	  		            markLine : {
+	    	  		                data : [
+	    	  		                    {type : 'average', name : '平均值'}
+	    	  		                ]
+	    	  		            }
+	    	  		        }
+	    	  		    ]   
+	    	});
+	    });
 	}
 
 	
@@ -400,71 +396,7 @@ $(document).ready(function() {
 				};
 		  ageBar.setOption(optionAge);	                    
 	}
-	/**
-	 * 音乐关联分析
-	 */
-	function showCorrelation(){
-		$("#panel-4").addClass("active");
-		var myChart = echarts.init(document.getElementById('correlation-graph'));
-		myChart.showLoading();
-		$.get('echarts/les-miserables.gexf', function (xml) {
-		    myChart.hideLoading();
 
-		    var graph = echarts.dataTool.gexf.parse(xml);
-		    var categories = [{name: '情歌'},{name: '摇滚'},{name: '爵士'},{name: '流行'},{name: '民谣'},{name: '电子'},{name: '嘻哈'},{name: '古典'},{name: '乡村'}];
-		/*    for (var i = 0; i < 9; i++) {
-		        categories[i] = {
-		            name: '类目' + i
-		        };
-		    }*/
-		    graph.nodes.forEach(function (node) {
-		        node.itemStyle = null;
-		        node.symbolSize = 10;
-		        node.value = node.symbolSize;
-		        node.category = node.attributes.modularity_class;
-		        // Use random x, y
-		        node.x = node.y = null;
-		        node.draggable = true;
-		    });
-		    option = {
-		        title: {
-		            text: '音乐风格关联图谱',
-		            //subtext: 'Default layout',
-		            top: 'bottom',
-		            left: 'right'
-		        },
-		        tooltip: {},
-		        legend: [{
-		            // selectedMode: 'single',
-		            data: categories.map(function (a) {
-		                return a.name;
-		            })
-		        }],
-		        animation: false,
-		        series : [
-		            {
-		                name: 'Les Miserables',
-		                type: 'graph',
-		                layout: 'force',
-		                data: graph.nodes,
-		                links: graph.links,
-		                categories: categories,
-		                roam: true,
-		                label: {
-		                    normal: {
-		                        position: 'right'
-		                    }
-		                },
-		                force: {
-		                    repulsion: 100
-		                }
-		            }
-		        ]
-		    };
-
-		    myChart.setOption(option);
-		}, 'xml');
-	}
 	/**
 	 * 音乐热度趋势分析
 	 */
@@ -472,94 +404,100 @@ $(document).ready(function() {
 		$("#panel-6").addClass("active");
 		var hotLineChart = echarts.init(document.getElementById('tend-line-container'),"macarons");
 
-		hotLineChart.setOption({
-				theme:'dark',
-			    title : {
-			        text: 'Top3歌曲热度趋势',
-			        subtext: '最近一周'
-			    },
-			    tooltip : {
-			        trigger: 'axis'
-			    },
-			    legend: {
-			        data:['Top1','Top2','Top3']
-			    },
-			    toolbox: {
-			        show : true,
-			        feature : {
-			            mark : {show: true},
-			            dataView : {show: true, readOnly: false},
-			            magicType : {show: true, type: ['line', 'bar']},
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
-			    xAxis : [
-			        {
-			            type : 'category',
-			            boundaryGap : false,
-			            data : ['周一','周二','周三','周四','周五','周六','周日']
-			        }
-			    ],
-			    yAxis : [
-			        {
-			            type : 'value',
-			            axisLabel : {
-			                formatter: '{value}'
-			            }
-			        }
-			    ],
-			    series : [
-			        {
-			            name:'Top1',
-			            type:'line',
-			            data:[11, 11, 15, 13, 12, 13, 10],
-			            markPoint : {
-			                data : [
-			                    {type : 'max', name: '最大值'},
-			                    {type : 'min', name: '最小值'}
-			                ]
-			            },
-			            markLine : {
-			                data : [
-			                    {type : 'average', name: '平均值'}
-			                ]
-			            }
-			        },
-			        {
-			            name:'Top2',
-			            type:'line',
-			            data:[5, 5, 7, 6, 12, 8,7],
-			            markPoint : {
-			                data : [
-			                    {type : 'max', name: '最大值'},
-			                    {type : 'min', name: '最小值'}
-			                ]
-			            },
-			            markLine : {
-			                data : [
-			                    {type : 'average', name: '平均值'}
-			                ]
-			            }
-			        },
-			        {
-			            name:'Top3',
-			            type:'line',
-			            data:[1, -2, 2, 5, 3, 2, 0],
-			            markPoint : {
-			                data : [
-			                    {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
-			                ]
-			            },
-			            markLine : {
-			                data : [
-			                    {type : 'average', name : '平均值'}
-			                ]
-			            }
-			        }
-			    ]
-			});
+	    hotLineChart.setOption({
+  	  		theme:'dark',
+  		    title : {
+  		        text: 'Top3歌曲热度趋势',
+  		        subtext: '最近24h'
+  		    },
+  		    tooltip : {
+  		        trigger: 'axis'
+  		    },
+  		    toolbox: {
+  		        show : true,
+  		        feature : {
+  		            mark : {show: true},
+  		            dataView : {show: true, readOnly: false},
+  		            magicType : {show: true, type: ['line', 'bar']},
+  		            restore : {show: true},
+  		            saveAsImage : {show: true}
+  		        }
+  		    },
+  		    calculable : true,
+  		    xAxis : [
+  		        {
+  		            type : 'category',
+  		            boundaryGap : false,
+  		            data : ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
+  		                    '13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
+  		        }
+  		    ],
+  		    yAxis : [
+  		        {
+  		            type : 'value',
+  		            axisLabel : {
+  		                formatter: '{value}'
+  		            }
+  		        }
+  		    ]
+  		});
+    $.post('hotTend.action').done(function(data){
+    	hotLineChart.setOption({
+		   legend: {
+ 		        data:[data.hotTendMap.top1name,data.hotTendMap.top2name,data.hotTendMap.top3name]
+ 		    },
+    	    series : [
+    	  		        {
+    	  		            name:data.hotTendMap.top1name,
+    	  		            type:'line',
+    	  		            data:data.hotTendMap.first,
+    	  		            markPoint : {
+    	  		                data : [
+    	  		                    {type : 'max', name: '最大值'},
+    	  		                    {type : 'min', name: '最小值'}
+    	  		                ]
+    	  		            },
+    	  		            markLine : {
+    	  		                data : [
+    	  		                    {type : 'average', name: '平均值'}
+    	  		                ]
+    	  		            }
+    	  		        },
+    	  		        {
+    	  		            name:data.hotTendMap.top2name,
+    	  		            type:'line',
+    	  		            data:data.hotTendMap.second,
+    	  		            markPoint : {
+    	  		                data : [
+    	  		                    {type : 'max', name: '最大值'},
+    	  		                    {type : 'min', name: '最小值'}
+    	  		                ]
+    	  		            },
+    	  		            markLine : {
+    	  		                data : [
+    	  		                    {type : 'average', name: '平均值'}
+    	  		                ]
+    	  		            }
+    	  		        },
+    	  		        {
+    	  		            name:data.hotTendMap.top3name,
+    	  		            type:'line',
+    	  		            data:data.hotTendMap.third,
+	    	  		        markPoint : {
+	  	  		                data : [
+	  	  		                    {type : 'max', name: '最大值'},
+	  	  		                    {type : 'min', name: '最小值'}
+	  	  		                ]
+	  	  		            },
+    	  		            markLine : {
+    	  		                data : [
+    	  		                    {type : 'average', name : '平均值'}
+    	  		                ]
+    	  		            }
+    	  		        }
+    	  		    ]   
+    		});
+    	});
 	}
 	
 	 

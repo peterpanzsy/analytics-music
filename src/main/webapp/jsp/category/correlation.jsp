@@ -5,64 +5,20 @@
             <tr>
                 <th>排名</th>
                 <th>歌曲</th>
-                <th>歌手</th>
-                <th>所属专辑</th>
                 <th>关联度</th>
-                <th>热度值</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>排名</th>
                 <th>歌曲</th>
-                <th>歌手</th>
-                <th>所属专辑</th>
+<!--                 <th>歌手</th>
+                <th>所属专辑</th> -->
                 <th>关联度</th>
-                <th>热度值</th>
             </tr>
         </tfoot>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>幸福了，然后呢</td>
-                <td>A-Lin</td>
-                <td>中文</td>
-                <td>130</td>
-                <td>320,800</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>喜欢你</td>
-                <td>BEYOND</td>
-                <td>粤语 </td>
-                <td>103</td>
-                <td>170,750</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>平凡之路</td>
-                <td>朴树</td>
-                <td>中文</td>
-                <td>98</td>
-                <td>86,000</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>泡沫</td>
-                <td>邓紫棋</td>
-                <td>中文</td>
-                <td>98</td>
-                <td>433,060</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>时间煮雨</td>
-                <td>吴亦凡</td>
-                <td>中文</td>
-                <td>80</td>
-                <td>162,700</td>
-            </tr>
-            </tbody>
+        </tbody>
     </table>
 </div>
 <div id="correlation-graph" class="graph-border">

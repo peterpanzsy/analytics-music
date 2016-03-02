@@ -6,11 +6,11 @@
          <!-- 首页    -->
          <select id="getHotTend" resultType="Integer">
          	SELECT t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-09 00:00:00' and '2014-12-10 00:00:00'>t1.time 
-and t1.id=t2.id and t1.id = #{songid,jdbcType=NUMERIC} ORDER BY t1.time
+and t1.id=t2.id and t1.mid = #{songid,jdbcType=VARCHAR} ORDER BY t1.time
          </select>
          <select id="getHotRank" resultType="HotRank">
-			SELECT t1.id, t2.sname name, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
-and t1.id=t2.id order by t1.listentimes desc
+			SELECT t1.mid songid, t2.sname name, t2.singer, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
+and t1.mid=t2.mid order by t1.listentimes desc
          </select>
          <select id="getHotSingers" resultType="HotSinger">
          	SELECT t1.id, t2.singer, t2.sname song, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
@@ -37,7 +37,14 @@ and t1.id=t2.id order by t1.listentimes desc
 			select t.id,t.label,t.weight from t_reviewerlabel t;
          </select>
          <!-- 听众评论列表 -->
-         <select id="getReviewDetail" resultType="ReviewDetail">
-			select t.id,t2.sname song,t2.singer,t.reviewer,t.location,t.content,t.time date  from review t , qqsonginfos t2 where t2.mid=t.mid and t.mid='004SXM193wMYC1'
+         <select id="getReviewDetail" resultType="ReviewDetail"><!-- #and t.mid='004SXM193wMYC1' -->
+			select t.id,t2.sname song,t2.singer,t.reviewer,t.location,t.content,t.time date  from review t , qqsonginfos t2 where t2.mid=t.mid and t.mid='004SXM193wMYC1' order by t.content LIMIT #{0},#{1}
          </select>
+          <select id="countReviewDetail" resultType="Integer"><!-- #and t.mid='004SXM193wMYC1' -->
+			select count(*)  from review t , qqsonginfos t2 where t2.mid=t.mid and t.mid='004SXM193wMYC1' order by t.content
+         </select>
+         <!-- 歌曲关联中用到的 -->
+           <select id="getCorrelateddSongs" resultType="RelatedSongs">			
+				select t.sname name, t.rsname rsongs, t2.singer singer, t2.album from relatedsong t, xiamisonginfos t2 WHERE t.sid = t2.sid
+         </select> 
 </mapper>

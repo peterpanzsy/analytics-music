@@ -3,7 +3,22 @@ package com.keystone.analytics.music.model;
 public class RelatedSongs {
 	int id;
 	String name;
+	private String singer;
+	private String album;
 	String rsongs;
+	
+	public String getSinger() {
+		return singer;
+	}
+	public void setSinger(String singer) {
+		this.singer = singer;
+	}
+	public String getAlbum() {
+		return album;
+	}
+	public void setAlbum(String album) {
+		this.album = album;
+	}
 	public int getId() {
 		return id;
 	}

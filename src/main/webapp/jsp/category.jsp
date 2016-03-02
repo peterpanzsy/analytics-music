@@ -24,6 +24,15 @@
 	<script src="echarts/theme/vintage.js"></script>
 	<script src="echarts/dist/extension/dataTool.js"></script>
     
+    <script src="echarts-2.2.7/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+    </script>
 
   </head>
   <body>
@@ -88,7 +97,7 @@
 	
 	<script src="js/label-cloud.js"></script><!-- 标签云 -->
    	<script type="text/javascript" src="js/category.js"></script> 
-  
+  	<script type="text/javascript" src="js/category/correlation.js"></script> 
 	
   </body>
 </html>

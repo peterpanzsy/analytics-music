@@ -14,6 +14,8 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
          <typeAlias alias="RankDetail" type="com.keystone.analytics.music.model.RankDetail"/>
          <typeAlias alias="ReviewDetail" type="com.keystone.analytics.music.model.ReviewDetail"/>
          <typeAlias alias="ReviewerLabel" type="com.keystone.analytics.music.model.ReviewerLabel"/>
+         <typeAlias alias="SongRecommend" type="com.keystone.analytics.music.model.SongRecommend"/>
+         <typeAlias alias="SongCorrelation" type="com.keystone.analytics.music.model.SongCorrelation"/>
     </typeAliases>
  
     <!-- 映射map -->
