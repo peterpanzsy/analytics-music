@@ -67,6 +67,11 @@
 .search-option-border select{
 	width:100px;
 }
+.search-option-border button{
+	height:30px;
+	font-family:"微软雅黑";
+	font-size:14px;
+}
 /*音乐排行榜*/
 .table-div-border{
 	border:solid 1px #ddd;

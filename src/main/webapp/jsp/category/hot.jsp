@@ -1,42 +1,31 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <div class="search-option-border">
 歌曲选择:
-<select>
+<!-- <select>
   <option value="volvo" selected="selected">所在地</option>
   <option value="saab">Saab</option>
   <option value="opel">Opel</option>
   <option value="audi">Audi</option>
-</select>
-<select>
+</select> -->
+<br>歌名:
+<input id="songnamehot" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+歌手:
+<input id="singerhot" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+专辑:
+<input id="albumhot" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+<select id="languagehot">
   <option value="volvo" selected="selected">语言</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="saab">中文</option>
+  <option value="opel">粤语</option>
+  <option value="audi">英文</option>
+  <option value="">中英文</option>
 </select>
-<select>
+<!-- <select id="gengderhot">
   <option value="volvo" selected="selected">性别</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-<select>
-  <option value="volvo" selected="selected">姓名</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-<select>
-  <option value="volvo" selected="selected">专辑</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-<select>
-  <option value="volvo" selected="selected">歌曲</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
+  <option value="saab">男</option>
+  <option value="opel">女</option>
+</select> -->
+
 <br>不同平台:
 <input type="checkbox" value="" />虾米音乐热度排行 
 <input type="checkbox" value="" />QQ音乐热度排行
@@ -47,9 +36,10 @@
 <input type="checkbox" value="" />最近一月
 <input type="checkbox" value="" />最近三个月
 <input type="checkbox" value="" />历史热度
-<br>歌曲搜索:
-<input style="margin-top:5px;" type="text" value="" />
+
+<br><button onclick="searchSongTends()">搜索</button>
 </div>
+
 <div class="row-fluid">
  	<div class="contain-border" id="line-container" style="min-width: 310px; height: 400px; margin-top:0px;margin-bottom:5px;"></div>
 </div>

@@ -2,6 +2,8 @@ package com.keystone.analytics.music.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.keystone.analytics.music.model.HotRank;
 import com.keystone.analytics.music.model.HotSinger;
 import com.keystone.analytics.music.model.RankDetail;
@@ -9,6 +11,7 @@ import com.keystone.analytics.music.model.RelatedSongs;
 import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewLocationCount;
 import com.keystone.analytics.music.model.ReviewerLabel;
+import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
 
@@ -42,4 +45,9 @@ public interface MusicStatisDAO {
     public List<SongRecommend> getAllRecommendCou();
     //歌曲被关联次数列表
     public List<SongCorrelation> getCorrelateddSongs();
+    /**
+     * 高级搜索
+     */
+    //单曲搜索
+    public List<Song> searchSongs(Song song);
 }

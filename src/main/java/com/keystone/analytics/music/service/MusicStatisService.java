@@ -9,6 +9,7 @@ import com.keystone.analytics.music.model.ProvinceCount;
 import com.keystone.analytics.music.model.RankDetail;
 import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewerLabel;
+import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
 
@@ -38,9 +39,14 @@ public interface MusicStatisService {
 	public Map<String, Object> getGraphCorrelation();
 	//歌曲关联列表，类似推荐列表
 	List<SongCorrelation> getSongCorrelation();
+	//根据条件搜索歌曲们的热度趋势
+	public Map<String, Object> searchHotTends(Song song);
 	/**
 	 * 高级搜索
 	 */
+	public List<Song> searchSongs(Song song);
 	public Map<String, Object> getHotSingerTend();
+	//搜索一首歌的24H热度趋势
+	Map<String, Object> getHotTend(String songid, String song);
 }
 

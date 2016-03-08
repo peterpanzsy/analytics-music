@@ -1,8 +1,108 @@
-singleSongDraw();
+defaultSongDraw();
+
+/**
+ * 单曲搜索
+ */
+function searchSong(){
+	$songKey = $("#songKey").val();
+	$song = $songKey.split(" ")[0];
+	$singer = $songKey.split(" ")[1];
+	if($song==null || $song==""){
+		alert("请补全歌名！");
+	}
+	if($singer==null || $singer==""){
+		alert("请补全歌手！");
+	}
+    $.ajax({
+        type: "POST",
+        url: "searchSong.action",
+        data: {song:$song, singer:$singer},
+        dataType: "json",
+        success: function(data){
+        		var song = data.song;
+        		$("#singer").html(song.singer);
+        		$("#language").html(song.language);
+        		$("#pubdate").html(song.date);
+        		$("#album").html(song.album);
+        		$("#type").html(song.type);
+        		$("#hot").html(song.hot);
+        		searchSongHot(song.name,song.songid);
+                 }
+    });
+}
+function searchSongHot($song, $songid){
+	//音乐热度
+	var hotLineChart = echarts.init(document.getElementById('line-container'),"macarons");
+    hotLineChart.setOption({
+	  		theme:'dark',
+		    title : {
+		        text: '歌曲热度趋势',
+		        subtext: '最近24h'
+		    },
+		    tooltip : {
+		        trigger: 'axis'
+		    },
+		    toolbox: {
+		        show : true,
+		        feature : {
+		            mark : {show: true},
+		            dataView : {show: true, readOnly: false},
+		            magicType : {show: true, type: ['line', 'bar']},
+		            restore : {show: true},
+		            saveAsImage : {show: true}
+		        }
+		    },
+		    calculable : true,
+		    xAxis : [
+		        {
+		            type : 'category',
+		            boundaryGap : false,
+		            data : ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00',
+		                    '13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00']
+		        }
+		    ],
+		    yAxis : [
+		        {
+		            type : 'value',
+		            axisLabel : {
+		                formatter: '{value}'
+		            }
+		        }
+		    ]
+		});
+	$.post(
+			'hotTendSearch.action',
+			{song:$song, songid:$songid}	
+	).done(function(data){
+		hotLineChart.setOption({
+		   legend: {
+			        data:[data.hotTendMap.name]
+			    },
+		    series : [
+		  		        {
+		  		            name:data.hotTendMap.name,
+		  		            type:'line',
+		  		            data:data.hotTendMap.tendList,
+		  		            markPoint : {
+		  		                data : [
+		  		                    {type : 'max', name: '最大值'},
+		  		                    {type : 'min', name: '最小值'}
+		  		                ]
+		  		            },
+		  		            markLine : {
+		  		                data : [
+		  		                    {type : 'average', name: '平均值'}
+		  		                ]
+		  		            }
+		  		        }		  		
+		  		    ]   
+		});
+	});
+}
 /**
  * 音乐热度
  */
-function singleSongDraw(){
+function defaultSongDraw(){
 	$("#panel-1").addClass("active");
 	//音乐热度
 	var hotLineChart = echarts.init(document.getElementById('line-container'),"macarons");

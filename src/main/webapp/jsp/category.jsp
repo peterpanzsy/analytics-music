@@ -98,6 +98,6 @@
 	<script src="js/label-cloud.js"></script><!-- 标签云 -->
    	<script type="text/javascript" src="js/category.js"></script> 
   	<script type="text/javascript" src="js/category/correlation.js"></script> 
-	
+	<script type="text/javascript" src="js/category/hot24.js"></script> 
   </body>
 </html>

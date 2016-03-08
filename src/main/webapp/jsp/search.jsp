@@ -32,7 +32,7 @@
 			<div class="span12">
 				<div class="tabbable tabs-left" id="tabs-42902">
 					<ul class="nav nav-tabs" style="border:1px solid #ddd;">
-						<li onclick="singleSongDraw();" class="active">
+						<li onclick="defaultSongDraw();" class="active">
 							<a data-toggle="tab" href="#panel-1">► 单曲搜索</a>
 						</li>
 						<li onclick="singerDraw();">

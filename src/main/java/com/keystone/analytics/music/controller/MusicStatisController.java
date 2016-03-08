@@ -19,6 +19,7 @@ import com.keystone.analytics.music.model.ProvinceCount;
 import com.keystone.analytics.music.model.RankDetail;
 import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewerLabel;
+import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
 import com.keystone.analytics.music.service.MusicStatisService;
@@ -91,6 +92,30 @@ public class MusicStatisController {
     	result.put("data", rankList);//前端是datatables请求的，所以必须命名为data,除非在js中重新指定名字
     	return result;
     }
+    //热度24H
+    //单曲搜索
+    @RequestMapping("searchHotTends")
+    @ResponseBody
+    public Map<String, Object> searchHotTends(HttpServletRequest request){
+    	Map<String,Object> result = new HashMap<String, Object>();
+    	String song = request.getParameter("song");
+    	String singer = request.getParameter("singer");
+    	String language = request.getParameter("language");
+    	String album = request.getParameter("album");
+    	Song song1 = new Song();
+    	song1.setName(song);
+    	song1.setSinger(singer);
+    	song1.setLanguage(language);
+    	song1.setAlbum(album);
+    	Map<String, Object> tends= musicStatisService.searchHotTends(song1);
+    	if(tends.get("result")!=null && (Integer)tends.get("result")==0){
+    		result.put("success", 0);
+    		return result;
+    	}
+    	result.put("tends", tends);
+    	result.put("success", 1);
+    	return result;
+    }
     //歌曲关联信息
     @RequestMapping("getCorrelationList")
     @ResponseBody
@@ -140,6 +165,42 @@ public class MusicStatisController {
     /**
      * 高级搜索
      */
+    //单曲搜索
+    @RequestMapping("searchSong")
+    @ResponseBody
+    public Map<String, Object> searchSong(HttpServletRequest request){
+    	Map<String,Object> result = new HashMap<String, Object>();
+    	String song = request.getParameter("song");
+    	String singer = request.getParameter("singer");
+    	if(song==null || singer==null){
+    		result.put("success", 0);
+    		return result;
+    	}
+    	Song s = new Song();
+    	s.setName(song);
+    	s.setSinger(singer);
+    	List<Song> songList = musicStatisService.searchSongs(s);
+    	result.put("song", songList.get(0));
+    	result.put("success", 1);
+    	return result;
+    }
+    //单曲的热度搜索
+    @RequestMapping("hotTendSearch")
+	@ResponseBody
+	public Map<String,Object> hotTendSearch(HttpServletRequest request){
+    	Map<String,Object> result = new HashMap<String, Object>();
+    	String song = request.getParameter("song");
+    	String songid = request.getParameter("songid");
+    	if(song==null || songid==null){
+    		result.put("success", 0);
+    		return result;
+    	}
+		Map<String, Object> hotTendMap = new HashMap<String, Object>();
+		hotTendMap = musicStatisService.getHotTend(songid, song);
+    	result.put("hotTendMap", hotTendMap);
+    	result.put("success", 1);
+        return result;
+	}
     //歌手热度趋势
     @RequestMapping("hotSingerTend")
 	@ResponseBody

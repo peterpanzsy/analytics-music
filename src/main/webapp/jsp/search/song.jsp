@@ -1,20 +1,20 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <div class="search-div-border">
-	<h3><button>单曲搜索</button><input style="margin-top:10px;margin-left:5px;width:80%;height:30px;" type="text" value="" /></h3>
+	<h3><button onclick="searchSong()">单曲搜索</button><input id="songKey" style="margin-top:10px;margin-left:5px;width:50%;height:30px;" type="text" value="" />&nbsp;<span style="font-size:18px;">(输入格式:歌名 歌手; 例如:喜欢你 BEYOND)</span></h3>
 	<h3>歌曲资料:</h3>
 	<div class="row-fluid songinfo">
 		<div class="span6">
 			<ul class="unstyled">
-				<li class="song-info">歌手:<span id="singer">蔡健雅</span></li>	
-				<li class="song-info">语言:<span id="language">中文</span></li>	
-				<li class="song-info">发行时间:<span id="pubdate">2013-7-8</span></li>	
+				<li class="song-info">歌手:<span id="singer"></span></li>	
+				<li class="song-info">语言:<span id="language"></span></li>	
+				<li class="song-info">发行时间:<span id="pubdate"></span></li>	
 			</ul>
 		</div>
 		<div class="span6">
 			<ul class="unstyled">		
-				<li class="song-info">所属专辑:<span id="album">蔡健雅</span></li>		
-				<li class="song-info">歌曲类型:<span id="type">蔡健雅</span></li>	
-				<li class="song-info">历史热度:<span id="hot">蔡健雅</span></li>	
+				<li class="song-info">所属专辑:<span id="album"></span></li>		
+				<li class="song-info">歌曲类型:<span id="type"></span></li>	
+				<li class="song-info">历史热度:<span id="hot"></span></li>	
 			</ul>
 		</div>
 	</div>	

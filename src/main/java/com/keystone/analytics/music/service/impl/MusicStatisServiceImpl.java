@@ -25,6 +25,7 @@ import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewLocationCount;
 import com.keystone.analytics.music.model.ReviewerLabel;
 import com.keystone.analytics.music.model.GraphSongCorrelation;
+import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
 import com.keystone.analytics.music.service.MusicStatisService;
@@ -310,6 +311,19 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	 * 高级搜索
 	 */
 	@Override
+	public List<Song> searchSongs(Song song){
+		return musicStatisDAO.searchSongs(song);
+	}
+	@Override
+	public Map<String, Object> getHotTend(String songid, String song) {
+		// TODO Auto-generated method stub
+		Map<String, Object> hotTendMap = new HashMap<String, Object>();
+		List<Integer> hotTendList = musicStatisDAO.getHotTend(songid);
+		hotTendMap.put("tendList", getHourPlayCou(hotTendList));
+		hotTendMap.put("name",song);
+		return hotTendMap;
+	}
+	@Override
 	public Map<String, Object> getHotSingerTend() {
 		// TODO Auto-generated method stub
 		Map<String, Object> hotTendMap = new HashMap<String, Object>();
@@ -323,6 +337,23 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 		hotTendMap.put("top1name",hotRankList.get(0).getSinger());
 		hotTendMap.put("top2name",hotRankList.get(1).getSinger());
 		hotTendMap.put("top3name",hotRankList.get(2).getSinger());
+		return hotTendMap;
+	}
+	//热度24H，根据搜索条件搜索一堆歌曲的热度列表
+	@Override
+	public Map<String, Object> searchHotTends(Song song) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		Map<String, Object> hotTendMap = new HashMap<String, Object>();
+		List<Song> songList = musicStatisDAO.searchSongs(song);
+		if(songList.size()>10){
+			hotTendMap.put("result", 0);//搜索结果太多无法展示
+			return hotTendMap;
+		}
+		for(Song s:songList){
+			List<Integer> hotTendList = musicStatisDAO.getHotTend(s.getSongid());
+			hotTendMap.put(s.getName(), getHourPlayCou(hotTendList));
+		}
 		return hotTendMap;
 	}
 

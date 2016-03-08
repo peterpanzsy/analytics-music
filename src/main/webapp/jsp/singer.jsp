@@ -33,7 +33,7 @@
 			<div class="span12">
 				<div class="tabbable tabs-left" id="tabs-42902">
 					<ul class="nav nav-tabs" style="border:1px solid #ddd;">
-						<li onclick="singleSongDraw();" class="active">
+						<li class="active">
 							<a data-toggle="tab" href="#panel-1">► 歌手粉丝属性</a>
 						</li>
 						<li onclick="drawSingerTraceLineChart()">
