@@ -99,5 +99,6 @@
    	<script type="text/javascript" src="js/category.js"></script> 
   	<script type="text/javascript" src="js/category/correlation.js"></script> 
 	<script type="text/javascript" src="js/category/hot24.js"></script> 
+	<script type="text/javascript" src="js/category/review.js"></script> 
   </body>
 </html>

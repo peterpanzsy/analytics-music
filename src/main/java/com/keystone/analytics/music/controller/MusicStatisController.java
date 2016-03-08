@@ -145,6 +145,18 @@ public class MusicStatisController {
     @RequestMapping("getReviewDetail")
     @ResponseBody
     public Map<String,Object> getReviewDetail(HttpServletRequest request){
+    	String song = request.getParameter("song");
+    	String singer = request.getParameter("singer");
+    	String language = request.getParameter("language");
+    	String album = request.getParameter("album");
+    	if(song.equals("") && singer.equals("") && language.equals("") && album.equals("")  ){
+    		song = "泪海";//防止结果太多，默认歌曲
+    	}
+    	Song song1 = new Song();
+    	song1.setName(song);
+    	song1.setSinger(singer);
+    	song1.setLanguage(language);
+    	song1.setAlbum(album);
     	int start=0;
     	int length = 0;
     	try{
@@ -153,8 +165,8 @@ public class MusicStatisController {
     	}catch(Exception e){
     		e.printStackTrace();
     	}
-    	List<ReviewDetail> relist = musicStatisService.getReviewDetail(start, length);
-    	int count = musicStatisService.countReviewDetail();
+    	List<ReviewDetail> relist = musicStatisService.getReviewDetail(start, length, song1);
+    	int count = musicStatisService.countReviewDetail(song1);
     	Map<String, Object> result = new HashMap<String, Object>();
     	//List<T> aaData; //aaData 与datatales 加载的“dataSrc"对应  
     	result.put("data", relist);//默认命名为data,否则必须在datatables前端指定"dataSrc": "aaData",   

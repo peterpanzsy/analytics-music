@@ -36,51 +36,31 @@
 		<a href="#" class="blue">睡觉</a>
 	</div>
 </div>
+
 <div id="review-detail" class="table-div-border">
 	<h3>曲库音乐评论详情</h3>
+	<div class="search-option-border">
 	歌曲选择:
-	<select>
-	  <option value="volvo" selected="selected">所在地</option>
-	  <option value="saab">Saab</option>
-	  <option value="opel">Opel</option>
-	  <option value="audi">Audi</option>
-	</select>
-	<select>
+	<br>歌名:
+	<input id="songnamereview" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+	歌手:
+	<input id="singerreview" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+	专辑:
+	<input id="albumreview" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+	<select id="languagereview">
 	  <option value="volvo" selected="selected">语言</option>
-	  <option value="saab">Saab</option>
-	  <option value="opel">Opel</option>
-	  <option value="audi">Audi</option>
-	</select>
-	<select>
-	  <option value="volvo" selected="selected">性别</option>
-	  <option value="saab">Saab</option>
-	  <option value="opel">Opel</option>
-	  <option value="audi">Audi</option>
-	</select>
-	<select>
-	  <option value="volvo" selected="selected">姓名</option>
-	  <option value="saab">Saab</option>
-	  <option value="opel">Opel</option>
-	  <option value="audi">Audi</option>
-	</select>
-	<select>
-	  <option value="volvo" selected="selected">专辑</option>
-	  <option value="saab">Saab</option>
-	  <option value="opel">Opel</option>
-	  <option value="audi">Audi</option>
-	</select>
-	<select>
-	  <option value="volvo" selected="selected">歌曲</option>
-	  <option value="saab">Saab</option>
-	  <option value="opel">Opel</option>
-	  <option value="audi">Audi</option>
+	  <option value="saab">中文</option>
+	  <option value="opel">粤语</option>
+	  <option value="audi">英文</option>
+	  <option value="">中英文</option>
 	</select>
 	<br>评论标签:
-	<input type="checkbox" value="" />虾米音乐 
+	<input type="checkbox" value="" />虾米音乐
 	<input type="checkbox" value="" />QQ音乐
 	<input type="checkbox" value="" />网易云音乐
-	<br>歌曲搜索:
-	<input style="margin-top:5px;" type="text" value="" />
+	<br><button onclick="searchReviews()">搜索</button>
+	</div>
+
 	<table id="reviewTable" class="display dataTable" cellspacing="0" width="100%">
         <thead>
             <tr>

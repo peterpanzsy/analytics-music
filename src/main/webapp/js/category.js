@@ -24,58 +24,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	/**
-	 * 听众标签
-	 */
-	$.ajax({
-		 type: "POST",
-         url: "getReviewerLabel.action",
-         dataType: "json",
-         async:false,
-         success: function(data){
-	        	  $('#label-div').empty();   //清空resText里面的所有内容
-	              var html = ''; 
-	              $.each(data.labels, function(index, label){  
-	            	 var color = "default";
-	            	 if(index%5==1){
-	            		 color = "red";	            		 
-	            	 }else if(index%5==2){
-	            		 color="blue";
-	            	 }else if(index%5==3){
-	            		 color="yellow";
-	            	 }else if(index%5==4){
-	            		 color="green";
-	            	 }  
-	            	 html+="<a href='#' class='"+color+"'>"+label.label+"</a>";
-	              });
-	              $('#label-div').html(html);
-              }
-	});
-	drawLabelCloud('label-div');
-	/**
-	 * 评论列表
-	 */
-	$('#reviewTable').DataTable({
-		//"paging":   false,
-	    //"ordering": false,
-		"serverSide": true,//这个打开会发送一个form，里面包含一些比如分页信息等默认参数
-		"ajax":{
-			"url":"getReviewDetail.action",
-			"type":"POST"
-				},
-		"columns": [
-		            { "data": "song" },
-		            { "data": "singer" },
-		            { "data": "reviewer" },
-		            { "data": "location" },
-		            { "data": "content" },
-		            { "data": "date" }
-		        ],
-	    "info":     false,
-		"language": {
-			"url":"DataTables/Chinese.json"
-		}
-	});
+
 	/**
 	 * 音乐趋势详情
 	 */

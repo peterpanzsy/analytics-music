@@ -39,8 +39,8 @@ public interface MusicStatisDAO {
     //听众标签
     public List<ReviewerLabel> getReviewerLabel();
     // 听众评论
-    public List<ReviewDetail> getReviewDetail(int start,int length);
-    public int countReviewDetail();
+    public List<ReviewDetail> getReviewDetail(String songid, int start,int length);
+    public int countReviewDetail(String songid);
     //所有歌曲被推荐次数
     public List<SongRecommend> getAllRecommendCou();
     //歌曲被关联次数列表

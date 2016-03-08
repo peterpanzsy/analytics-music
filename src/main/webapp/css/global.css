@@ -76,6 +76,7 @@
 .table-div-border{
 	border:solid 1px #ddd;
 	padding:10px;
+	line-height:30px;
 }
 /*听众属性*/
 .listener-chart-border{

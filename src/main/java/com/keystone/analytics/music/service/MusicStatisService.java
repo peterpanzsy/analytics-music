@@ -33,8 +33,8 @@ public interface MusicStatisService {
 	//听众标签
 	public List<ReviewerLabel> getReviewerLabel();
 	// 听众评论信息
-	public List<ReviewDetail> getReviewDetail(int start, int length);
-	public int countReviewDetail();
+	public List<ReviewDetail> getReviewDetail(int start, int length, Song song);
+	public int countReviewDetail(Song song);
 	//获取所有歌曲直接关联关系，被推荐关系
 	public Map<String, Object> getGraphCorrelation();
 	//歌曲关联列表，类似推荐列表

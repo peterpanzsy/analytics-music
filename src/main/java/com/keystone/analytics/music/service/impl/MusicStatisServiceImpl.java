@@ -172,14 +172,37 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	}
 
 	@Override
-	public List<ReviewDetail> getReviewDetail(int start, int length) {
+	public List<ReviewDetail> getReviewDetail(int start, int length, Song song) {
 		// TODO Auto-generated method stub
-		return musicStatisDAO.getReviewDetail(start, length);
+		List<ReviewDetail> res = new ArrayList<ReviewDetail>();
+		List<Song> songList = musicStatisDAO.searchSongs(song);
+		int cou = 0;
+		for(Song s: songList){
+			if(s!=null){
+				List<ReviewDetail> tmp = musicStatisDAO.getReviewDetail(s.getSongid(), start, length);//这里有bug
+				res.addAll(tmp);
+				cou += tmp.size();
+				if(cou>=length){//分页，每页显示length个
+					break;
+				}
+			}			
+		}
+		return res;
 	}
+	
 	@Override
-	public int countReviewDetail(){
-		return musicStatisDAO.countReviewDetail();
+	public int countReviewDetail(Song song){
+		int res = 0;
+		List<Song> songList = musicStatisDAO.searchSongs(song);
+		for(Song s: songList){
+			if(s!=null){
+				int tmp = musicStatisDAO.countReviewDetail(s.getSongid());;
+				res += tmp;
+			}			
+		}
+		return res;
 	}
+	
 	@Override
 	public List<ReviewerLabel> getReviewerLabel() {
 		// TODO Auto-generated method stub
