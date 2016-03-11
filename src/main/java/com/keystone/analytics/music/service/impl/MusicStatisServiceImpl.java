@@ -64,6 +64,61 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	}
 	
 	@Override
+	public List<ProvinceCount> getSearchProvinceCou(Song song){
+		List<ReviewDetail> res = new ArrayList<ReviewDetail>();
+		List<Song> songList = musicStatisDAO.searchSongs(song);
+		List<String> provinces = musicStatisDAO.getProvinces();	
+		HashMap<String, Integer> provinceCount = new HashMap<String, Integer>();
+		for(Song s: songList){
+			if(s!=null){
+				List<ReviewDetail> tmp = musicStatisDAO.getReviewDetail(s.getSongid(), 0, Integer.MAX_VALUE);//以上搜索评论列表	
+				for(ReviewDetail rd :tmp){
+					String location = rd.getLocation();
+					if(location.contains("内蒙古")){
+						String pro = "内蒙古";
+						if(provinceCount.containsKey(pro)){
+							int count = provinceCount.get(pro);
+							provinceCount.put(pro, count+1);
+						}else{
+							provinceCount.put(pro, 1);
+						}
+					}else if(location.contains("黑龙江")){
+						String pro = "黑龙江";
+						if(provinceCount.containsKey(pro)){
+							int count = provinceCount.get(pro);
+							provinceCount.put(pro, count+1);
+						}else{
+							provinceCount.put(pro, 1);
+						}
+					}else{
+						if(location.length()<2){
+							continue;
+						}
+						String pro = location.substring(0,2);
+						if(!provinces.contains(pro)){
+							continue;
+						}
+						if(provinceCount.containsKey(pro)){
+							int count = provinceCount.get(pro);
+							provinceCount.put(pro, count+1);
+						}else{
+							provinceCount.put(pro, 1);
+						}
+					}
+				}
+				res.addAll(tmp);
+			}			
+		}	
+		List<ProvinceCount> result = new ArrayList<ProvinceCount>();
+		for (Entry<String, Integer> entry : provinceCount.entrySet()) {
+			ProvinceCount p = new ProvinceCount();
+			p.setName(entry.getKey());
+			p.setValue(entry.getValue());
+			result.add(p);
+		}
+		return result;
+	}
+	@Override
 	public List<ProvinceCount> getProvinceCou() {
 		List<String> provinces = musicStatisDAO.getProvinces();	
 		HashMap<String, Integer> provinceCount = new HashMap<String, Integer>();

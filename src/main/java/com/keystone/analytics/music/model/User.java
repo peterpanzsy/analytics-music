@@ -4,6 +4,7 @@ public class User {
 	private int id;
 	private int state;
 	private String nickname;
+	private String password;
 	public int getId() {
 	    return id;
 	}
@@ -21,5 +22,11 @@ public class User {
 	}
 	public void setNickname(String nickname) {
 	    this.nickname = nickname;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPassword() {
+		return password;
 	}
 }

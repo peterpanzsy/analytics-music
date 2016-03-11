@@ -29,6 +29,7 @@ public interface MusicStatisService {
 	/**
 	 * 音乐分类信息
 	 */
+	public List<ProvinceCount> getSearchProvinceCou(Song song);
 	public List<RankDetail> getRankDetail();
 	//听众标签
 	public List<ReviewerLabel> getReviewerLabel();

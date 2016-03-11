@@ -72,7 +72,7 @@ public class MusicStatisController {
         return result;
     }
     
-    @RequestMapping("reviewProvinces")
+    @RequestMapping("reviewProvinces")//这个是直接从reviewcity表里读出来的，不准
     @ResponseBody
     public Map<String,List<ProvinceCount>> reviewProvinceCount(){
     	List<ProvinceCount> pros = new ArrayList<ProvinceCount>();
@@ -84,6 +84,25 @@ public class MusicStatisController {
     /*
      * 音乐分类信息
      */
+    //听众属性
+    @RequestMapping("searchReviewProvinces")
+    @ResponseBody
+    public Map<String,List<ProvinceCount>> searchReviewProvinceCount(HttpServletRequest request){
+     	String song = request.getParameter("song");
+    	String singer = request.getParameter("singer");
+    	String language = request.getParameter("language");
+    	String album = request.getParameter("album");
+    	Song song1 = new Song();
+    	song1.setName(song);
+    	song1.setSinger(singer);
+    	song1.setLanguage(language);
+    	song1.setAlbum(album);
+    	List<ProvinceCount> pros = new ArrayList<ProvinceCount>();
+    	pros = musicStatisService.getSearchProvinceCou(song1);
+    	Map<String,List<ProvinceCount>> result = new HashMap<String, List<ProvinceCount>>();
+    	result.put("provinceCou", pros);
+    	return result;
+    }
     @RequestMapping("getRankDetail")
     @ResponseBody
     public Map<String,List<RankDetail>> getRankDetail(){

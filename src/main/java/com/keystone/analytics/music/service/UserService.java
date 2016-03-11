@@ -4,4 +4,6 @@ import com.keystone.analytics.music.model.User;
 
 public interface UserService {
 	 public int insertUser(User user);
+	 
+	 public int selectUser(User user);
 }

@@ -9,4 +9,6 @@ public interface UserDAO {
      * @return
      */
     public int insertUser(User user);
+    
+    public int selectUser(User user);
 }

@@ -51,19 +51,19 @@ and t1.id=t2.id order by t1.listentimes desc
          <!-- 单曲搜索 -->
          <select id="searchSongs" parameterType="Song" resultType="Song">
          	SELECT t1.mid songid, t2.sname name, t2.singer, t2.`language`, t2.date, t2.album, t2.type, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
-and t1.id=t2.id 
-<if test="name!=null and name!=''">  
-    AND t2.sname = #{name}  
-</if>
-<if test="singer!=null and singer!=''">  
-    AND t2.singer = #{singer}  
-</if>
-<if test="language!=null and language!=''">  
-    AND t2.language = #{language}  
-</if>
-<if test="album!=null and album!=''">  
-    AND t2.album = #{album}  
-</if>
+			and t1.id=t2.id 
+			<if test="name!=null and name!=''">  
+			    AND t2.sname = #{name}  
+			</if>
+			<if test="singer!=null and singer!=''">  
+			    AND t2.singer = #{singer}  
+			</if>
+			<if test="language!=null and language!=''">  
+			    AND t2.language = #{language}  
+			</if>
+			<if test="album!=null and album!=''">  
+			    AND t2.album = #{album}  
+			</if>
 <!-- and t2.sname=#{0,jdbcType=VARCHAR}  and t2.singer=#{1,jdbcType=VARCHAR}  --> order by t1.listentimes desc
          </select>
 </mapper>

@@ -7,11 +7,15 @@
          <insert id="insertUser" parameterType="User" keyProperty="id">
              insert into t_user( 
          state,
-         nickname)
+         nickname,password)
          values
          (       
          #{state},
-         #{nickname})
+         #{nickname},
+         #{password})
          </insert>
+         <select id="selectUser"  parameterType="User" resultType="Integer">
+         	select count(*) from t_user t where t.nickname=#{nickname} and t.password=#{password}
+         </select>
           
 </mapper>
