@@ -27,9 +27,9 @@
 </select> -->
 
 <br>不同平台:
-<input type="checkbox" value="" />虾米音乐热度排行 
-<input type="checkbox" value="" />QQ音乐热度排行
-<input type="checkbox" value="" />Keystone音乐热度排行
+<input type="radio" name="platformhot" value="XM" />虾米音乐热度排行 
+<input type="radio" name="platformhot" value="QQ" />QQ音乐热度排行
+<input type="radio" name="platformhot" value="KS" />Keystone音乐热度排行
 <br>不同日期:
 <input type="checkbox" value="" />最近一天
 <input type="checkbox" value="" />最近一周

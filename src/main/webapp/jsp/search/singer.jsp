@@ -1,19 +1,19 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <div class="search-div-border">
-	<h3><button>歌手搜索</button><input style="margin-top:10px;margin-left:5px;width:80%;height:30px;" type="text" value="" /></h3>
+	<h3><button onclick="searchSinger()">歌手搜索</button><input id="singerKey" style="margin-top:10px;margin-left:5px;width:80%;height:30px;" type="text" value="" /></h3>
 	<h3>歌手资料:</h3>
 	<div class="row-fluid songinfo">
 		<div class="span6">
 			<ul class="unstyled">
-				<li class="song-info">姓名:<span id="singer">蔡健雅</span></li>	
-				<li class="song-info">性别:<span id="language">中文</span></li>	
-				<li class="song-info">年龄:<span id="pubdate">2013-7-8</span></li>	
+				<li class="song-info">姓名:<span id="singerSinger">蔡健雅</span></li>	
+				<li class="song-info">性别:<span id="genderSinger">中文</span></li>	
+				<li class="song-info">出生日期:<span id="birthSinger">2013-7-8</span></li>	
 			</ul>
 		</div>
 		<div class="span6">
 			<ul class="unstyled">		
-				<li class="song-info">热门专辑:<span id="album">蔡健雅</span></li>		
-				<li class="song-info">热门新闻:<span id="type">蔡健雅</span></li>	
+				<li class="song-info">热门专辑:<span id="albumsSinger">蔡健雅</span></li>		
+				<li class="song-info">热门新闻:<span id="newsSinger">蔡健雅</span></li>	
 			</ul>
 		</div>
 	</div>	

@@ -18,6 +18,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
          <typeAlias alias="SongCorrelation" type="com.keystone.analytics.music.model.SongCorrelation"/>
          
          <typeAlias alias="Song" type="com.keystone.analytics.music.model.Song"/>
+         <typeAlias alias="Singer" type="com.keystone.analytics.music.model.Singer"/>
     </typeAliases>
  
     <!-- 映射map -->

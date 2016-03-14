@@ -6,7 +6,7 @@ function searchSongTends(){
 	if($language === "语言"){
 		$language="";
 	}
-	var $gender = $("#gengderhot option:selected").text();
+	var $platform = $("input[name='platformhot']:checked").val();
 	//音乐热度
 	var hotLineChart = echarts.init(document.getElementById('line-container'),"macarons");
 	var option = {
@@ -49,7 +49,7 @@ function searchSongTends(){
     hotLineChart.setOption(option);
 	$.post(
 			'searchHotTends.action',
-			{song:$song, singer:$singer, album:$album, language:$language, gender:$gender}	
+			{song:$song, singer:$singer, album:$album, language:$language,platform:$platform}	
 	).done(function(data){
 		if(data.success==0){
 			alert("搜索结果太多，无法展示，请细化搜索条件！");

@@ -4,9 +4,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.keystone.analytics.music.dao.MusicStatisDAO">
          <!-- 首页    -->
-         <select id="getHotTend" resultType="Integer">
+         <select id="getHotTendQQ" resultType="Integer">
          	SELECT t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-09 00:00:00' and '2014-12-10 00:00:00'>t1.time 
 and t1.id=t2.id and t1.mid = #{songid,jdbcType=VARCHAR} ORDER BY t1.time
+         </select>
+         <select id="getHotTendXM" resultType="Integer">
+         	SELECT t1.listentimes hot FROM xiamilistentimes t1, xiamisonginfos t2 where t1.time>='2014-12-04 00:00:00' and '2014-12-05 00:00:00'>t1.time 
+and t1.id=t2.id and t1.sid = #{songid,jdbcType=VARCHAR} ORDER BY t1.time
          </select>
          <select id="getHotRank" resultType="HotRank">
 			SELECT t1.mid songid, t2.sname name, t2.singer, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
@@ -28,9 +32,39 @@ and t1.id=t2.id order by t1.listentimes desc;
          </select> 
          <!-- 音乐分类信息 -->
          <!-- 音乐排行榜  带行号的（排名）-->
-         <select id="getRankDetail" resultType="RankDetail">
+         <select id="getRankDetailQQ" parameterType="Song" resultType="RankDetail">
 			SELECT (@rowNum:=@rowNum+1) as rownum, t1.id, t2.sname name, t2.singer, t2.`language`, t2.album, t1.listentimes hot, t2.type FROM listentimes t1, qqsonginfos t2,(Select (@rowNum :=0) ) b where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
-and t1.id=t2.id order by t1.listentimes desc
+and t1.id=t2.id 	
+			<if test="name!=null and name!=''">  
+			    AND t2.sname = #{name}  
+			</if>
+			<if test="singer!=null and singer!=''">  
+			    AND t2.singer = #{singer}  
+			</if>
+			<if test="language!=null and language!=''">  
+			    AND t2.language = #{language}  
+			</if>
+			<if test="album!=null and album!=''">  
+			    AND t2.album = #{album}  
+			</if>
+			order by t1.listentimes desc
+         </select>
+         <select id="getRankDetailXM" parameterType="Song" resultType="RankDetail">
+			SELECT (@rowNum:=@rowNum+1) as rownum, t1.id, t2.sname name, t2.singer, t2.`language`, t2.album, t1.listentimes hot, t2.type FROM xiamilistentimes t1, xiamisonginfos t2,(Select (@rowNum :=0) ) b where t1.time>='2014-12-04 11:00:00' and '2014-12-04 12:00:00'>t1.time 
+and t1.id=t2.id 	
+			<if test="name!=null and name!=''">  
+			    AND t2.sname = #{name}  
+			</if>
+			<if test="singer!=null and singer!=''">  
+			    AND t2.singer = #{singer}  
+			</if>
+			<if test="language!=null and language!=''">  
+			    AND t2.language = #{language}  
+			</if>
+			<if test="album!=null and album!=''">  
+			    AND t2.album = #{album}  
+			</if>
+			order by t1.listentimes desc
          </select>
          <!-- 听众标签 -->
          <select id="getReviewerLabel" resultType="ReviewerLabel">
@@ -49,7 +83,7 @@ and t1.id=t2.id order by t1.listentimes desc
          </select> 
          <!-- 高级搜索 -->
          <!-- 单曲搜索 -->
-         <select id="searchSongs" parameterType="Song" resultType="Song">
+         <select id="searchSongsQQ" parameterType="Song" resultType="Song">
          	SELECT t1.mid songid, t2.sname name, t2.singer, t2.`language`, t2.date, t2.album, t2.type, t1.listentimes hot FROM listentimes t1, qqsonginfos t2 where t1.time>='2014-12-11 11:00:00' and '2014-12-11 12:00:00'>t1.time 
 			and t1.id=t2.id 
 			<if test="name!=null and name!=''">  
@@ -65,5 +99,28 @@ and t1.id=t2.id order by t1.listentimes desc
 			    AND t2.album = #{album}  
 			</if>
 <!-- and t2.sname=#{0,jdbcType=VARCHAR}  and t2.singer=#{1,jdbcType=VARCHAR}  --> order by t1.listentimes desc
+         </select>
+         <select id="searchSongsXM" parameterType="Song" resultType="Song">
+         	SELECT t1.sid songid, t2.sname name, t2.singer, t2.`language`, t2.date, t2.album, t2.type, t1.listentimes hot FROM xiamilistentimes t1, xiamisonginfos t2 where t1.time>='2014-12-04 11:00:00' and '2014-12-04 12:00:00'>t1.time 
+			and t1.id=t2.id 
+			<if test="name!=null and name!=''">  
+			    AND t2.sname = #{name}  
+			</if>
+			<if test="singer!=null and singer!=''">  
+			    AND t2.singer = #{singer}  
+			</if>
+			<if test="language!=null and language!=''">  
+			    AND t2.language = #{language}  
+			</if>
+			<if test="album!=null and album!=''">  
+			    AND t2.album = #{album}  
+			</if>
+<!-- and t2.sname=#{0,jdbcType=VARCHAR}  and t2.singer=#{1,jdbcType=VARCHAR}  --> order by t1.listentimes desc
+         </select>
+         <select id="searchSingers" parameterType="Singer" resultType="Singer">
+         	select t.id, t.name, t.`language`, t.gender, t.location, t.albums, t.birth, t.news from t_singer t where 1=1
+			<if test="name!=null and name!=''">  
+			    AND t.name = #{name}  
+			</if>
          </select>
 </mapper>

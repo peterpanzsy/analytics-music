@@ -67,6 +67,8 @@
 	<%@ include file="common/foot.jsp" %>
 	<script src="js/label-cloud.js"></script>	
 	<script type="text/javascript" src="js/singer.js"></script> 
+	<script type="text/javascript" src="js/singer/trace.js"></script> 
+	<script type="text/javascript" src="js/singer/fans.js"></script> 
   </body>
 </html>	
 

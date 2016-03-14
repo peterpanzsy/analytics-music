@@ -1,29 +1,4 @@
 $(document).ready(function() {
-	/**
-	 * 音乐排行榜
-	 */
-	$('#rankSong').DataTable({
-		//"paging":   false,
-	    //"ordering": false,
-		"ajax":{
-			"url":"getRankDetail.action",
-			"type":"POST"
-				},
-		"columns": [
-		            { "data": "rownum" },
-		            { "data": "name" },
-		            { "data": "singer" },
-		            { "data": "language" },
-		            { "data": "album" },
-		            { "data": "hot" },
-		            { "data": "type" }
-		        ],
-	    "info":     false,
-		"language": {
-			"url":"DataTables/Chinese.json"
-		}
-	});
-	
 
 	/**
 	 * 音乐趋势详情

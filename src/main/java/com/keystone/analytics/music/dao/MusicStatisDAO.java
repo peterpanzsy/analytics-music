@@ -11,6 +11,7 @@ import com.keystone.analytics.music.model.RelatedSongs;
 import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewLocationCount;
 import com.keystone.analytics.music.model.ReviewerLabel;
+import com.keystone.analytics.music.model.Singer;
 import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
@@ -20,7 +21,8 @@ public interface MusicStatisDAO {
 	/**
 	 * 首页
 	 */
-	public List<Integer> getHotTend(String songid);//一天的试听次数走势
+	public List<Integer> getHotTendQQ(String songid);//一天的试听次数走势
+	public List<Integer> getHotTendXM(String songid);//一天的试听次数走势
 	
     public List<HotRank> getHotRank( );
     
@@ -35,7 +37,8 @@ public interface MusicStatisDAO {
     /**
      * 音乐分类信息
      */
-    public List<RankDetail> getRankDetail();
+    public List<RankDetail> getRankDetailQQ(Song song);
+    public List<RankDetail> getRankDetailXM(Song song);
     //听众标签
     public List<ReviewerLabel> getReviewerLabel();
     // 听众评论
@@ -49,5 +52,7 @@ public interface MusicStatisDAO {
      * 高级搜索
      */
     //单曲搜索
-    public List<Song> searchSongs(Song song);
+    public List<Song> searchSongsQQ(Song song);
+    public List<Song> searchSongsXM(Song song);
+    List<Singer> searchSingers(Singer singer);
 }

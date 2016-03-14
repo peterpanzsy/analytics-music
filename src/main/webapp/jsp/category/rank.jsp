@@ -1,28 +1,34 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <div class="search-option-border">
-不同平台:
-<input type="checkbox" value="" />虾米音乐热度排行 
-<input type="checkbox" value="" />QQ音乐热度排行
-<input type="checkbox" value="" />Keystone音乐热度排行
-<br>不同日期:
+歌曲选择:
+<br>歌名:
+<input id="songnamerank" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+歌手:
+<input id="singerrank" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+专辑:
+<input id="albumrank" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+<select id="languagerank">
+  <option value="volvo" selected="selected">语言</option>
+  <option value="saab">中文</option>
+  <option value="opel">粤语</option>
+  <option value="audi">英文</option>
+  <option value="">中英文</option>
+</select>
+
+<br>不同平台:
+<input id="XM" type="radio" name="platformrank" value="XM" />虾米音乐热度排行 
+<input id="QQ" type="radio" name="platformrank" value="QQ" />QQ音乐热度排行
+<input id="KS" type="radio" name="platformrank" value="KS" />Keystone音乐热度排行
+<!-- <br>不同日期:
 <input type="checkbox" value="" />最近一天
 <input type="checkbox" value="" />最近一周
 <input type="checkbox" value="" />最近一月
 <input type="checkbox" value="" />最近三个月
-<input type="checkbox" value="" />历史热度
-<br>语言:
-<input type="checkbox" value="" />国语
-<input type="checkbox" value="" />粤语
-<input type="checkbox" value="" />英语
-<input type="checkbox" value="" />韩语
-<input type="checkbox" value="" />日语
-<input type="checkbox" value="" />其他
-<br>歌手性别
-<input type="checkbox" value="" />男
-<input type="checkbox" value="" />女
-<br>搜索:
-<input type="text" value="" />
+<input type="checkbox" value="" />历史热度 -->
+
+<br><button onclick="searchSongsRank()">搜索</button>
 </div>
+
 <div class="table-div-border">
 <table id="rankSong" class="display dataTable" cellspacing="0" width="100%">
         <thead>

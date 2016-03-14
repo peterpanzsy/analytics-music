@@ -1,6 +1,7 @@
 package com.keystone.analytics.music.model;
 
 public class Song {
+	int id;
 	String songid;
 	String name;
 	String singer;
@@ -9,6 +10,13 @@ public class Song {
 	String album;
 	String type;
 	int hot;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getSongid() {
 		return songid;
 	}

@@ -25,6 +25,7 @@ import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewLocationCount;
 import com.keystone.analytics.music.model.ReviewerLabel;
 import com.keystone.analytics.music.model.GraphSongCorrelation;
+import com.keystone.analytics.music.model.Singer;
 import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
@@ -44,9 +45,9 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 		// TODO Auto-generated method stub
 		Map<String, Object> hotTendMap = new HashMap<String, Object>();
 		List<HotRank> hotRankList = musicStatisDAO.getHotRank();
-		List<Integer> firstHotTendList = musicStatisDAO.getHotTend(hotRankList.get(0).getSongid());
-		List<Integer> secondHotTendList = musicStatisDAO.getHotTend(hotRankList.get(1).getSongid());
-		List<Integer> thirdHotTendList = musicStatisDAO.getHotTend(hotRankList.get(2).getSongid());
+		List<Integer> firstHotTendList = musicStatisDAO.getHotTendQQ(hotRankList.get(0).getSongid());
+		List<Integer> secondHotTendList = musicStatisDAO.getHotTendQQ(hotRankList.get(1).getSongid());
+		List<Integer> thirdHotTendList = musicStatisDAO.getHotTendQQ(hotRankList.get(2).getSongid());
 		hotTendMap.put("first", getHourPlayCou(firstHotTendList));
 		hotTendMap.put("second", getHourPlayCou(secondHotTendList));
 		hotTendMap.put("third", getHourPlayCou(thirdHotTendList));
@@ -66,7 +67,7 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	@Override
 	public List<ProvinceCount> getSearchProvinceCou(Song song){
 		List<ReviewDetail> res = new ArrayList<ReviewDetail>();
-		List<Song> songList = musicStatisDAO.searchSongs(song);
+		List<Song> songList = musicStatisDAO.searchSongsQQ(song);
 		List<String> provinces = musicStatisDAO.getProvinces();	
 		HashMap<String, Integer> provinceCount = new HashMap<String, Integer>();
 		for(Song s: songList){
@@ -220,17 +221,39 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	}
 	
 	@Override
-	public List<RankDetail> getRankDetail() {
+	public List<RankDetail> getRankDetail(Song song1,String platform) {
 		// TODO Auto-generated method stub
-		
-		return musicStatisDAO.getRankDetail();
+		if(platform.equals("QQ")){
+			List<RankDetail> res = musicStatisDAO.getRankDetailQQ(song1);
+			return res;
+		}else if(platform.equals("XM")){
+			List<RankDetail> res = musicStatisDAO.getRankDetailXM(song1);
+			return res;
+		}else{
+			List<RankDetail> res = new ArrayList<RankDetail>();
+			List<RankDetail> res1 = musicStatisDAO.getRankDetailQQ(song1);
+			List<RankDetail> res2 = musicStatisDAO.getRankDetailXM(song1);
+		    Map<Integer, RankDetail> mappedRank = new HashMap<Integer, RankDetail>();  
+		    for (RankDetail rd : res2) {  
+		    	mappedRank.put(rd.getId(), rd);  
+		    }  
+			for(RankDetail r:res1){
+				if(mappedRank.get(r.getId())!=null){
+					RankDetail rd = mappedRank.get(r.getId());
+					int hot = Integer.parseInt(rd.getHot())+Integer.parseInt(r.getHot());
+					r.setHot(String.valueOf(hot));
+					res.add(r);
+				}
+			}
+			return res;
+		}
 	}
 
 	@Override
 	public List<ReviewDetail> getReviewDetail(int start, int length, Song song) {
 		// TODO Auto-generated method stub
 		List<ReviewDetail> res = new ArrayList<ReviewDetail>();
-		List<Song> songList = musicStatisDAO.searchSongs(song);
+		List<Song> songList = musicStatisDAO.searchSongsQQ(song);
 		int cou = 0;
 		for(Song s: songList){
 			if(s!=null){
@@ -248,7 +271,7 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	@Override
 	public int countReviewDetail(Song song){
 		int res = 0;
-		List<Song> songList = musicStatisDAO.searchSongs(song);
+		List<Song> songList = musicStatisDAO.searchSongsQQ(song);
 		for(Song s: songList){
 			if(s!=null){
 				int tmp = musicStatisDAO.countReviewDetail(s.getSongid());;
@@ -390,13 +413,30 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	 */
 	@Override
 	public List<Song> searchSongs(Song song){
-		return musicStatisDAO.searchSongs(song);
+		return musicStatisDAO.searchSongsQQ(song);
 	}
 	@Override
-	public Map<String, Object> getHotTend(String songid, String song) {
+	public List<Singer> searchSingers(Singer singer){
+		return musicStatisDAO.searchSingers(singer);
+	}
+	@Override
+	public Map<String, Object> getHotTend(String songid, String song, String platform) {
 		// TODO Auto-generated method stub
 		Map<String, Object> hotTendMap = new HashMap<String, Object>();
-		List<Integer> hotTendList = musicStatisDAO.getHotTend(songid);
+		List<Integer> hotTendList = new ArrayList<Integer>(); 
+		if(platform.equals("QQ")){
+			 hotTendList = musicStatisDAO.getHotTendQQ(songid);
+		}else if(platform.equals("XM")){
+			 hotTendList = musicStatisDAO.getHotTendXM(songid);
+		}else{
+			List<Integer> hotTendList1 = musicStatisDAO.getHotTendQQ(songid);
+			int l1=hotTendList1.size();
+			List<Integer> hotTendList2 = musicStatisDAO.getHotTendXM(songid);
+			int l2 = hotTendList2.size();
+			for(int i=0;i<(l1<l2?l1:l2);i++){
+				hotTendList.add(hotTendList1.get(i)+hotTendList2.get(i));
+			}
+		}
 		hotTendMap.put("tendList", getHourPlayCou(hotTendList));
 		hotTendMap.put("name",song);
 		return hotTendMap;
@@ -406,9 +446,9 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 		// TODO Auto-generated method stub
 		Map<String, Object> hotTendMap = new HashMap<String, Object>();
 		List<HotRank> hotRankList = musicStatisDAO.getHotRank();
-		List<Integer> firstHotTendList = musicStatisDAO.getHotTend(hotRankList.get(0).getSongid());
-		List<Integer> secondHotTendList = musicStatisDAO.getHotTend(hotRankList.get(1).getSongid());
-		List<Integer> thirdHotTendList = musicStatisDAO.getHotTend(hotRankList.get(2).getSongid());
+		List<Integer> firstHotTendList = musicStatisDAO.getHotTendQQ(hotRankList.get(0).getSongid());
+		List<Integer> secondHotTendList = musicStatisDAO.getHotTendQQ(hotRankList.get(1).getSongid());
+		List<Integer> thirdHotTendList = musicStatisDAO.getHotTendQQ(hotRankList.get(2).getSongid());
 		hotTendMap.put("first", getHourPlayCou(firstHotTendList));
 		hotTendMap.put("second", getHourPlayCou(secondHotTendList));
 		hotTendMap.put("third", getHourPlayCou(thirdHotTendList));
@@ -419,19 +459,81 @@ public class MusicStatisServiceImpl implements MusicStatisService {
 	}
 	//热度24H，根据搜索条件搜索一堆歌曲的热度列表
 	@Override
-	public Map<String, Object> searchHotTends(Song song) {
+	public Map<String, Object> searchHotTends(Song song, String platform) {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		Map<String, Object> hotTendMap = new HashMap<String, Object>();
-		List<Song> songList = musicStatisDAO.searchSongs(song);
+		List<Song> songList = new ArrayList<Song>();
+		if(platform.equals("QQ")){
+			songList = musicStatisDAO.searchSongsQQ(song);
+			if(songList.size()>10){
+				hotTendMap.put("result", 0);//搜索结果太多无法展示
+				return hotTendMap;
+			}
+			for(Song s:songList){
+				List<Integer> hotTendList = musicStatisDAO.getHotTendQQ(s.getSongid());
+				hotTendMap.put(s.getName(), getHourPlayCou(hotTendList));
+			}
+		}else if(platform.equals("XM")){
+			songList = musicStatisDAO.searchSongsXM(song);
+			if(songList.size()>10){
+				hotTendMap.put("result", 0);//搜索结果太多无法展示
+				return hotTendMap;
+			}
+			for(Song s:songList){
+				List<Integer> hotTendList = musicStatisDAO.getHotTendXM(s.getSongid());
+				hotTendMap.put(s.getName(), getHourPlayCou(hotTendList));
+			}
+		}else{
+			List<Song> songList1 = musicStatisDAO.searchSongsQQ(song);
+			for(Song s:songList1){
+				List<Integer> hotTendList = musicStatisDAO.getHotTendQQ(s.getSongid());
+				hotTendMap.put(s.getName(), getHourPlayCou(hotTendList));
+			}
+			List<Song> songList2 = musicStatisDAO.searchSongsXM(song);
+			if(songList1.size()>10 && songList2.size()>10){
+				hotTendMap.put("result", 0);//搜索结果太多无法展示
+				return hotTendMap;
+			}
+			for(Song s:songList2){
+				List<Integer> hotTendList = musicStatisDAO.getHotTendXM(s.getSongid());
+				if(hotTendMap.get(s.getName())!=null){
+					List<Integer> t = (List<Integer>)hotTendMap.get(s.getName());
+					int l1 = t.size();
+					List<Integer> t2 = getHourPlayCou(hotTendList);
+					int l2 = t2.size();
+					List<Integer> rs = new ArrayList<Integer>();
+					for(int i=0;i<(l1<l2?l1:l2); i++){
+						rs.add(t.get(i)+t2.get(i));
+					}
+					hotTendMap.put(s.getName(), rs);
+				}else{
+					hotTendMap.put(s.getName(), getHourPlayCou(hotTendList));
+				}
+			}
+		}
+	
+		return hotTendMap;
+	}
+	
+	//歌手分类信息， 歌手动态追踪的热度搜索
+	@Override
+	public Map<String, Object> searchHotSingerTends(String  singer) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+		Map<String, Object> hotTendMap = new HashMap<String, Object>();
+		List<Song> songList = new ArrayList<Song>();
+		Song s = new Song();
+		s.setSinger(singer);
+		songList = musicStatisDAO.searchSongsQQ(s);
 		if(songList.size()>10){
 			hotTendMap.put("result", 0);//搜索结果太多无法展示
 			return hotTendMap;
 		}
-		for(Song s:songList){
-			List<Integer> hotTendList = musicStatisDAO.getHotTend(s.getSongid());
-			hotTendMap.put(s.getName(), getHourPlayCou(hotTendList));
-		}
+//		for(Song song:songList){
+			List<Integer> hotTendList = musicStatisDAO.getHotTendQQ(songList.get(0).getSongid());//取搜出来的第一首歌的热度趋势
+			hotTendMap.put(songList.get(0).getSinger(), getHourPlayCou(hotTendList));
+//		}
 		return hotTendMap;
 	}
 

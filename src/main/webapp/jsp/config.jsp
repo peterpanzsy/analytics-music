@@ -31,21 +31,21 @@
 		<div class="row">
 			<div class="span12">
 				<div class="tabbable tabs-left" id="tabs-42902">
-					<ul class="nav nav-tabs" style="border:1px solid #ddd;">
-						<li onclick="defaultSongDraw();" class="active">
+					<ul class="nav nav-tabs" style="border:1px solid #ddd;height:32px;">
+						<li class="active">
 							<a data-toggle="tab" href="#panel-1">► 曲库配置</a>
 						</li>
-						<li onclick="singerDraw();">
+<!-- 						<li onclick="singerDraw();">
 							<a data-toggle="tab" href="#panel-2">► 歌手数据配置</a>
-						</li>
+						</li> -->
 					</ul>
 					<div class="tab-content">
 						<div class="tab-pane active" id="panel-1">
 							<%@ include file="config/song.jsp" %>
 						</div>
-						<div class="tab-pane" id="panel-2">
+		<%-- 				<div class="tab-pane" id="panel-2">
 							<%@ include file="config/singer.jsp" %>
-						</div>
+						</div> --%>
 					</div>
 				</div>
 			</div>

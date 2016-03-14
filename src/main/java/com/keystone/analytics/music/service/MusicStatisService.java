@@ -9,6 +9,7 @@ import com.keystone.analytics.music.model.ProvinceCount;
 import com.keystone.analytics.music.model.RankDetail;
 import com.keystone.analytics.music.model.ReviewDetail;
 import com.keystone.analytics.music.model.ReviewerLabel;
+import com.keystone.analytics.music.model.Singer;
 import com.keystone.analytics.music.model.Song;
 import com.keystone.analytics.music.model.SongCorrelation;
 import com.keystone.analytics.music.model.SongRecommend;
@@ -30,7 +31,7 @@ public interface MusicStatisService {
 	 * 音乐分类信息
 	 */
 	public List<ProvinceCount> getSearchProvinceCou(Song song);
-	public List<RankDetail> getRankDetail();
+	public List<RankDetail> getRankDetail(Song song1,String platform);
 	//听众标签
 	public List<ReviewerLabel> getReviewerLabel();
 	// 听众评论信息
@@ -41,13 +42,20 @@ public interface MusicStatisService {
 	//歌曲关联列表，类似推荐列表
 	List<SongCorrelation> getSongCorrelation();
 	//根据条件搜索歌曲们的热度趋势
-	public Map<String, Object> searchHotTends(Song song);
+	public Map<String, Object> searchHotTends(Song song, String platform);
 	/**
 	 * 高级搜索
 	 */
 	public List<Song> searchSongs(Song song);
+	public List<Singer> searchSingers(Singer singer);
 	public Map<String, Object> getHotSingerTend();
 	//搜索一首歌的24H热度趋势
-	Map<String, Object> getHotTend(String songid, String song);
+	Map<String, Object> getHotTend(String songid, String song, String platform);
+	/**
+	 * 歌手分类信息
+	 * @param singer
+	 * @return
+	 */
+	Map<String, Object> searchHotSingerTends(String singer);
 }
 

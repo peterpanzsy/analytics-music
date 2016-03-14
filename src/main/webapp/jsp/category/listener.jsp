@@ -17,9 +17,9 @@
 <input type="checkbox" value="" />韩语
 <input type="checkbox" value="" />日语
 <input type="checkbox" value="" />其他 -->
-<br>歌手性别
+<!-- <br>歌手性别
 <input type="checkbox" value="" />男
-<input type="checkbox" value="" />女
+<input type="checkbox" value="" />女 -->
 <br>
 歌曲选择:
 <br>歌名:

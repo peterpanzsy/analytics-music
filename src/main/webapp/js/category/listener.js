@@ -28,7 +28,7 @@ function searchListeners(){
 
 
 /**
- * 听众属性
+ * 听众属性  初始化
  */
 function drawListenerDistribution(){
 	$("#panel-3").addClass("active");//必须active之后才初始化echarts的部件！！！！

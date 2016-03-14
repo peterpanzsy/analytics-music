@@ -28,12 +28,12 @@
   <body>
     <%@ include file="common/head.jsp" %>
      <div class="container">
-		<div class="row">
+		<div class="row search-div-border" style="margin-top:10px;">
 		<div class="col-md-1"></div>
-			<div class="span12 title" style="width:900px;">			
-	     		<span>标题:</span><input style="margin-top:10px;margin-left:5px;width:70%;height:30px;" type="text" value="" /><br>
-	     		<span>摘要:</span><textarea style="margin-left:5px;margin-top: 10px; width: 70%; height: 200px"></textarea><br>
-	     		<div style="margin-top:10px;">
+			<div class="span12" style="width:900px;">			
+	     		<span class="title">标题:</span><input style="margin-top:10px;margin-left:5px;width:70%;height:30px;" type="text" value="" /><br>
+	     		<span class="title">摘要:</span><textarea style="margin-left:5px;margin-top: 10px; width: 70%; height: 200px"></textarea><br>
+	<!--      		<div style="margin-top:10px;">
 		     		<span>原始数据项选择:</span><br>
 					<div style="margin-top:10px;margin-left:40px;font-size:17px;">
 						<span>歌名:</span>
@@ -50,20 +50,22 @@
 						  <option value="">中英文</option>
 						</select>
 					</div>
-				</div>
+				</div> -->
 				
 				<div style="margin-top:10px;">
-		     		<span>展示目标数据项选择:</span>
-					<input type="checkbox" value="" />热度
-					<input type="checkbox" value="" />排行
-					<input type="checkbox" value="" />关联
+		     		<span class="title">选择报告需要展示的内容:</span><br>
+		     		<div class="col-md-1"></div>
+		     		<div class="col-md-11" style="margin-top:20px;line-height:30px;">
+					<input type="checkbox" value="" />听众评价<br>
+					<input type="checkbox" value="" />听众属性特征<br>
+					<input type="checkbox" value="" />热度追踪<br>
+					<input type="checkbox" value="" />音乐关联度<br>
+					<input type="checkbox" value="" />歌手关联度<br>
+					<input type="checkbox" value="" />歌手粉丝属性<br>
+					<input type="checkbox" value="" />keydata定制化报告
+					</div>
 				</div>
-				<div>
-					<div class="col-md-3"></div>
-					<input class="btn btn-default btn-success col-md-1" type="submit" value="确定" style="margin-top: 60px">
-					<div class="col-md-2"></div>
-					<input class="btn btn-default btn-warning col-md-1" type="submit" value="取消" style="margin-top: 60px">
-				</div>
+				<div class="col-md-11" style="margin:0 auto;margin-top:20px;text-align:center;width:700px;"><input class="btn btn-success" type="submit" value="提交"></div>
 			
 			</div>	
 		</div>

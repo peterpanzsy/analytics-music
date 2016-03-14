@@ -8,42 +8,27 @@
 <div class="search-option-border">
 <h3>歌手粉丝详细分析</h3>
 歌手选择:
-<select>
-  <option value="volvo" selected="selected">歌手所在地</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-<select>
+<br>姓名:
+<input id="singerfans" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+歌曲:
+<input id="songfans" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+专辑:
+<input id="albumfans" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+所在地:
+<input id="locationfans" style="margin-top:0px;width:100px;height:30px;" type="text" value="" />
+<select id="languagefans">
   <option value="volvo" selected="selected">语言</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="saab">中文</option>
+  <option value="opel">粤语</option>
+  <option value="audi">英文</option>
+  <option value="">中英文</option>
 </select>
 <select>
   <option value="volvo" selected="selected">性别</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
+  <option value="saab">男</option>
+  <option value="opel">女</option>
 </select>
-<select>
-  <option value="volvo" selected="selected">姓名</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-<select>
-  <option value="volvo" selected="selected">专辑</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
-<select>
-  <option value="volvo" selected="selected">歌曲</option>
-  <option value="saab">Saab</option>
-  <option value="opel">Opel</option>
-  <option value="audi">Audi</option>
-</select>
+
 <br>粉丝特征:
 <input type="checkbox" value="" />地域特征
 <input type="checkbox" value="" />性别比例
@@ -51,8 +36,7 @@
 <input type="checkbox" value="" />认证用户比例
 <input type="checkbox" value="" />活跃粉丝统计
 <input type="checkbox" value="" />粉丝喜好特征
-<br>歌手搜索:
-<input style="margin-top:5px;" type="text" value="" />
+<br><button onclick="searchFansOfSinger()">搜索</button>
 </div>
 
 <div class="fans-chart-border">
